@@ -1,0 +1,33 @@
+{
+    "name": "ps/api-resource-bundle",
+    "type": "symfony-bundle",
+    "description": "This bundle provides easy to use API resources for serialization and deserialization.",
+    "homepage": "https://prescreen.io",
+    "license": "MIT",
+    "config": {
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Prescreen\\ApiResourceBundle\\": ""
+        }
+    },
+    "require": {
+        "php": "^7.2|^8.0",
+        "symfony/config": "^5.2",
+        "symfony/http-kernel": "^5.2",
+        "doctrine/orm": "^2.8",
+        "symfony/dependency-injection": "^5.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "authors": [
+        {
+            "name": "Florian Hofinger",
+            "email": "florian.hofinger@prescreen.io"
+        }
+    ]
+}

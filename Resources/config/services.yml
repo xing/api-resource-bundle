@@ -1,0 +1,60 @@
+services:
+    # Validators
+    ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
+        arguments:
+            - !tagged api_resource.validator
+
+    ApiResourceBundle\Application\Services\Validators\StringValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\IntValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\BoolValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\DateValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\IdValidator:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\IdCollectionValidator:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\ResourceValidator:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry'
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\ResourceCollectionValidator:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry'
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\UrlValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    ApiResourceBundle\Application\Services\Validators\EmailValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    # Transformers
+    ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry:
+        arguments:
+            - !tagged api_resource.transformer
