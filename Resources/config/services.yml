@@ -1,4 +1,15 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Prescreen\ApiResourceBundle\Command\:
+        resource: '../../../src/Mp/ApiResourceBundle/Command/*'
+
+    Prescreen\ApiResourceBundle\Infrastructure\Services\:
+        resource: '../../../src/Mp/ApiResourceBundle/Infrastructure/Services/*'
+
     # Validators
     Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
         arguments:
@@ -51,6 +62,10 @@ services:
             - { name: api_resource.validator }
 
     Prescreen\ApiResourceBundle\Application\Services\Validators\EmailValidator:
+        tags:
+            - { name: api_resource.validator }
+
+    Prescreen\ApiResourceBundle\Application\Services\Validators\JsonValidator:
         tags:
             - { name: api_resource.validator }
 

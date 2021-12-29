@@ -2,14 +2,14 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Services;
 
-use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 use Doctrine\Common\Collections\Collection;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
 use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
+use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 
 abstract class ApiResourceTransformer
 {
@@ -328,5 +328,30 @@ abstract class ApiResourceTransformer
         }
 
         return $entityMethod;
+    }
+
+    /**
+     * @param array $data
+     * @param array $writeableFields
+     *
+     * @return array
+     */
+    private function flattenDataArray(array $data, array $writeableFields): array
+    {
+        $flatData = [];
+
+        foreach ($data as $key => $value) {
+            if (array_key_exists($key, $writeableFields)) {
+                $flatData[$key] = $value;
+            } elseif (is_array($value)) {
+                foreach ($value as $innerKey => $innerValue) {
+                    if (array_key_exists($innerKey, $writeableFields)) {
+                        $flatData[$innerKey] = $innerValue;
+                    }
+                }
+            }
+        }
+
+        return $flatData;
     }
 }
