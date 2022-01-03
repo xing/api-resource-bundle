@@ -3,6 +3,7 @@
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
