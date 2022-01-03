@@ -3,9 +3,7 @@
 namespace Prescreen\ApiResourceBundle\Command;
 
 use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\Infrastructure\Services\CreateApiResourceControllerService;
 use Prescreen\ApiResourceBundle\Infrastructure\Services\CreateApiResourceService;
-use Prescreen\ApiResourceBundle\Infrastructure\Services\CreateApiResourceTransformerService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,24 +16,12 @@ class CreateApiResourceCommand extends Command
      * @var CreateApiResourceService
      */
     private $createApiResourceService;
-    /**
-     * @var CreateApiResourceTransformerService
-     */
-    private $createApiResourceTransformerService;
-    /**
-     * @var CreateApiResourceControllerService
-     */
-    private $createApiResourceControllerService;
 
     public function __construct(
-        CreateApiResourceService $createApiResourceService,
-        CreateApiResourceTransformerService $createApiResourceTransformerService,
-        CreateApiResourceControllerService $createApiResourceControllerService
+        CreateApiResourceService $createApiResourceService
     ) {
         parent::__construct();
         $this->createApiResourceService = $createApiResourceService;
-        $this->createApiResourceTransformerService = $createApiResourceTransformerService;
-        $this->createApiResourceControllerService = $createApiResourceControllerService;
     }
 
     protected function configure()

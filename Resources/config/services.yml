@@ -5,10 +5,10 @@ services:
         public: true
 
     Prescreen\ApiResourceBundle\Command\:
-        resource: '../../../src/Mp/ApiResourceBundle/Command/*'
+        resource: '../../Command/*'
 
     Prescreen\ApiResourceBundle\Infrastructure\Services\:
-        resource: '../../../src/Mp/ApiResourceBundle/Infrastructure/Services/*'
+        resource: '../../Infrastructure/Services/*'
 
     # Validators
     Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
