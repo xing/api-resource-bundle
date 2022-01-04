@@ -163,7 +163,7 @@ abstract class ApiResourceTransformer
      *
      * @return string|null
      */
-    private function getEntityGetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
+    protected function getEntityGetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntityGetter', $fieldName);
     }
@@ -175,7 +175,7 @@ abstract class ApiResourceTransformer
      *
      * @return string|null
      */
-    private function getEntitySetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
+    protected function getEntitySetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntitySetter', $fieldName);
     }
@@ -187,7 +187,7 @@ abstract class ApiResourceTransformer
      *
      * @return string|null
      */
-    private function getEntityAdder(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
+    protected function getEntityAdder(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntityAdder', $fieldName);
     }
@@ -199,7 +199,7 @@ abstract class ApiResourceTransformer
      *
      * @return string|null
      */
-    private function getEntityRemover(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
+    protected function getEntityRemover(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntityRemover', $fieldName);
     }
@@ -212,7 +212,7 @@ abstract class ApiResourceTransformer
      *
      * @return string|null
      */
-    private function getEntityMethod(object $entityToFill, FieldOptions $fieldOptions, string $fieldOptionsGetter, string $fieldName): ?string
+    protected function getEntityMethod(object $entityToFill, FieldOptions $fieldOptions, string $fieldOptionsGetter, string $fieldName): ?string
     {
         $entityMethod = $fieldOptions->{$fieldOptionsGetter}();
 
@@ -243,7 +243,7 @@ abstract class ApiResourceTransformer
      * @param string $fieldName
      * @param $value
      */
-    private function setFieldWithEntitySetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName, $value): void
+    protected function setFieldWithEntitySetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName, $value): void
     {
         $entitySetter = $this->getEntitySetter($entityToFill, $fieldOptions, $fieldName);
         $entityToFill->{$entitySetter}($value);
@@ -256,7 +256,7 @@ abstract class ApiResourceTransformer
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      */
-    private function updateCollectionItems(Collection $currentCollection, Collection $newCollection, object $entityToFill, FieldOptions $fieldOptions, string $fieldName): void
+    protected function updateCollectionItems(Collection $currentCollection, Collection $newCollection, object $entityToFill, FieldOptions $fieldOptions, string $fieldName): void
     {
         $entityAdder = $this->getEntityAdder($entityToFill, $fieldOptions, $fieldName);
         $entityRemover = $this->getEntityRemover($entityToFill, $fieldOptions, $fieldName);
@@ -280,7 +280,7 @@ abstract class ApiResourceTransformer
      *
      * @return array|string
      */
-    private function getMethodPrefix(string $fieldOptionsGetter, string &$fieldName)
+    protected function getMethodPrefix(string $fieldOptionsGetter, string &$fieldName)
     {
         $methodPrefix = null;
 
@@ -313,7 +313,7 @@ abstract class ApiResourceTransformer
      *
      * @return string
      */
-    private function composeEntityMethod($methodPrefix, string $fieldName, object $entityToFill): string
+    protected function composeEntityMethod($methodPrefix, string $fieldName, object $entityToFill): string
     {
         if (is_array($methodPrefix)) {
             foreach ($methodPrefix as $prefix) {
@@ -336,7 +336,7 @@ abstract class ApiResourceTransformer
      *
      * @return array
      */
-    private function flattenDataArray(array $data, array $writeableFields): array
+    protected function flattenDataArray(array $data, array $writeableFields): array
     {
         $flatData = [];
 
