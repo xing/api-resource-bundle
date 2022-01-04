@@ -118,7 +118,7 @@ abstract class ApiResourceTransformer
                 $value = $validator->validate($fieldName, $value, $fieldOptions, $oldValue);
             }
 
-            if (ResourceCollectionField::TYPE === $fieldOptions->getType()) {
+            if ($fieldOptions instanceof ResourceCollectionField) {
                 $currentCollection = $oldValue;
 
                 if (null === $currentCollection || 0 === count($currentCollection)) {
