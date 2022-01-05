@@ -9,11 +9,13 @@ class IdCollectionField extends IdField
     /**
      * @param string $entityClass
      * @param bool $required
+     * @param string $idFieldName
      */
     public function __construct(
         string $entityClass,
-        bool $required = false
+        bool $required = false,
+        string $idFieldName = 'id'
     ) {
-        parent::__construct($entityClass, $required, self::TYPE);
+        parent::__construct($entityClass, $required, $idFieldName, self::TYPE);
     }
 }
