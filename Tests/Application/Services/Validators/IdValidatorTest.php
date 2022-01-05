@@ -58,7 +58,7 @@ class IdValidatorTest extends TestCase
         $this->expectException(LinkedObjectNotFoundException::class);
 
         $repository = $this->expectRepositoryToBeFound();
-        $repository->expects($this->once())->method('find')->willReturn(null);
+        $repository->expects($this->once())->method('findOneBy')->willReturn(null);
 
         $this->testService->validate('example_id', 23502357, new IdField(ExampleEntity::class));
     }
@@ -70,7 +70,7 @@ class IdValidatorTest extends TestCase
     {
         $repository = $this->expectRepositoryToBeFound();
         $exampleEntity = new ExampleEntity();
-        $repository->expects($this->once())->method('find')->willReturn($exampleEntity);
+        $repository->expects($this->once())->method('findOneBy')->willReturn($exampleEntity);
 
         $this->assertEquals($exampleEntity, $this->testService->validate('example_id', 23502357, new IdField(ExampleEntity::class, true)));
     }
@@ -82,7 +82,7 @@ class IdValidatorTest extends TestCase
     {
         $repository = $this->expectRepositoryToBeFound();
         $department = new ExampleEntity();
-        $repository->expects($this->once())->method('find')->willReturn($department);
+        $repository->expects($this->once())->method('findOneBy')->willReturn($department);
 
         $this->assertEquals($department, $this->testService->validate('example_id', 23502357, new IdField(ExampleEntity::class)));
     }

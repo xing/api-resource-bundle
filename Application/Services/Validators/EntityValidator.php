@@ -31,13 +31,15 @@ abstract class EntityValidator extends ApiValidator
      * @param string $fieldName
      * @param FieldOptions $fieldOptions
      * @param string|null $entityClass
-     *
+     * @param string $idFieldName
      * @return object
      * @throws LinkedObjectNotFoundException
      */
-    protected function getEntity(int $id, string $fieldName, FieldOptions $fieldOptions, string $entityClass = null): object
+    protected function getEntity(int $id, string $fieldName, FieldOptions $fieldOptions, string $entityClass = null, string $idFieldName = 'id'): object
     {
-        $entity = $this->repository->find($id);
+        $entity = $this->repository->findOneBy([
+            $idFieldName => $id
+        ]);
 
         if (null === $entityClass && method_exists($fieldOptions, 'getEntityClass')) {
             $entityClass = $fieldOptions->getEntityClass();

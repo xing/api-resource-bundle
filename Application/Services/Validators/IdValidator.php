@@ -45,7 +45,7 @@ class IdValidator extends EntityValidator
                 throw new FieldTypeException($fieldName, 'Value must be of type integer.');
             }
 
-            return $this->getEntity($value, $fieldName, $fieldOptions);
+            return $this->getEntity($value, $fieldName, $fieldOptions, null, $fieldOptions->getIdFieldName());
         }
 
         return $value;
