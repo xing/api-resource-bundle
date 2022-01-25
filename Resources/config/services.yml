@@ -23,6 +23,10 @@ services:
         tags:
             - { name: api_resource.validator }
 
+    Prescreen\ApiResourceBundle\Application\Services\Validators\FloatValidator:
+        tags:
+            - { name: api_resource.validator }
+
     Prescreen\ApiResourceBundle\Application\Services\Validators\BoolValidator:
         tags:
             - { name: api_resource.validator }

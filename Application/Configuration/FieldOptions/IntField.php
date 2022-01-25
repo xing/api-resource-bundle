@@ -9,11 +9,11 @@ class IntField extends FieldOptions
     /**
      * @var int
      */
-    private $min;
+    protected $min;
     /**
      * @var int
      */
-    private $max;
+    protected $max;
 
     /**
      * @param int|null $min
