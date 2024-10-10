@@ -34,7 +34,7 @@ class CreateApiResourceCommand extends Command
             ->addArgument('entity-class');
     }
 
-    public function run(InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         $entityClassFile = $input->getArgument('entity-class');
         $entityClass = $this->getClassFromFile($entityClassFile);
@@ -54,7 +54,7 @@ class CreateApiResourceCommand extends Command
         $output->writeln('> Create an API controller and start using your new resource!');
         $output->writeln('> <info>Happy coding!</info>');
 
-        return 1;
+        return Command::SUCCESS;
     }
 
     private function getClassFromFile($path_to_file)
