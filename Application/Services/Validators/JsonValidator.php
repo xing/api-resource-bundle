@@ -7,22 +7,17 @@ use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class JsonValidator extends ApiValidator
 {
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
-     * @return mixed
-     * @throws RequiredFieldMissingException
-     * @throws PermissionDeniedException|\Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException
-     *
      * @throws FieldTypeException
+     * @throws PermissionDeniedException
+     * @throws RequiredFieldMissingException
+     * @throws ValueNotAllowedException
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null)
     {
         parent::validate($fieldName, $value, $fieldOptions, $oldValue);
 
@@ -33,14 +28,13 @@ class JsonValidator extends ApiValidator
         return $value;
     }
 
-    private function isJson($value)
+    private function isJson($value): bool
     {
         if (is_array($value)) {
             $value = json_encode($value, 1);
         }
 
-        json_decode($value);
-        return (json_last_error() == JSON_ERROR_NONE);
+        return (json_validate($value));
     }
 
     public function getType(): string

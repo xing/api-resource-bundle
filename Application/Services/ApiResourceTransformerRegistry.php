@@ -4,14 +4,8 @@ namespace Prescreen\ApiResourceBundle\Application\Services;
 
 class ApiResourceTransformerRegistry
 {
-    /**
-     * @var iterable
-     */
-    private $apiResourceTransformers;
-
-    public function __construct(iterable $internalApiResourceTransformers)
+    public function __construct(private readonly iterable $apiResourceTransformers)
     {
-        $this->apiResourceTransformers = $internalApiResourceTransformers;
     }
 
     /**
@@ -28,6 +22,6 @@ class ApiResourceTransformerRegistry
             }
         }
 
-        throw new \InvalidArgumentException('Undefined InternalApiResourceTransformer: ' . $resourceClass);
+        throw new \InvalidArgumentException('Undefined ApiResourceTransformer: ' . $resourceClass);
     }
 }

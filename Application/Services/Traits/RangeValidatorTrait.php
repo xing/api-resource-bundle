@@ -7,12 +7,7 @@ use Prescreen\ApiResourceBundle\Exception\FieldOutOfRangeException;
 
 trait RangeValidatorTrait
 {
-    /**
-     * @param mixed $value
-     *
-     * @throws FieldOutOfRangeException
-     */
-    protected function validateRange($value, FieldOptions $fieldOptions, string $fieldName): void
+    protected function validateRange(mixed $value, FieldOptions $fieldOptions, string $fieldName): void
     {
         if (
             !empty($value) &&

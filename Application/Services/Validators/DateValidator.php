@@ -14,27 +14,19 @@ use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 class DateValidator extends ApiValidator
 {
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
      * @throws FieldTypeException
      * @throws RequiredFieldMissingException
      * @throws PermissionDeniedException
      * @throws ValueNotAllowedException
-     *
-     * @return DateTime
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): DateTime
     {
         parent::validate($fieldName, $value, $fieldOptions, $oldValue);
 
         if (null !== $value) {
             try {
-                $dateTime = new DateTime($value);
-                return $dateTime;
-            } catch (Exception $e) {
+                return new DateTime($value);
+            } catch (Exception) {
                 throw new FieldTypeException($fieldName, 'Value must be a valid date.');
             }
         }

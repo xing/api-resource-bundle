@@ -15,21 +15,10 @@ abstract class ApiResourceTransformer
 {
     use CaseConverter;
 
-    /**
-     * @var ApiValidatorRegistry
-     */
-    protected $apiValidatorRegistry;
-    /**
-     * @var object
-     */
-    protected $resource;
+    protected object $resource;
 
-    /**
-     * @param ApiValidatorRegistry $apiValidatorRegistry
-     */
-    public function __construct(ApiValidatorRegistry $apiValidatorRegistry)
+    public function __construct(protected readonly ApiValidatorRegistry $apiValidatorRegistry)
     {
-        $this->apiValidatorRegistry = $apiValidatorRegistry;
     }
 
     abstract public function getEntityClass(): string;
@@ -41,11 +30,7 @@ abstract class ApiResourceTransformer
     abstract protected function getWriteableFields(): array;
 
     /**
-     * @param object $entity
-     *
      * @throws WrongObjectTypeGivenException
-     *
-     * @return ApiResource
      */
     public function fromEntity(object $entity): ApiResource
     {
@@ -59,11 +44,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param iterable $iterable
-     *
      * @throws WrongObjectTypeGivenException
-     *
-     * @return iterable
      */
     public function fromIterable(iterable $iterable): iterable
     {
@@ -77,8 +58,6 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entity
-     *
      * @throws WrongObjectTypeGivenException
      */
     protected function validateEntityClass(object $entity): void
@@ -91,12 +70,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param array $data
-     * @param object $entityToFill
-     *
      * @throws RequiredFieldMissingException
-     *
-     * @return object
      */
     public function fromArray(array $data, object $entityToFill): object
     {
@@ -134,9 +108,6 @@ abstract class ApiResourceTransformer
         return $entityToFill;
     }
 
-    /**
-     * @return array
-     */
     protected function getRequiredFields(): array
     {
         return array_filter($this->getWriteableFields(), function (FieldOptions $fieldOptions) {
@@ -144,11 +115,6 @@ abstract class ApiResourceTransformer
         });
     }
 
-    /**
-     * @param object $entity
-     *
-     * @return ApiResource
-     */
     protected function createResource(object $entity): ApiResource
     {
         $resourceClass = $this->getResourceClass();
@@ -156,62 +122,26 @@ abstract class ApiResourceTransformer
         return $resourceClass::fromEntity($entity);
     }
 
-    /**
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldName
-     *
-     * @return string|null
-     */
     protected function getEntityGetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntityGetter', $fieldName);
     }
 
-    /**
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldName
-     *
-     * @return string|null
-     */
     protected function getEntitySetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntitySetter', $fieldName);
     }
 
-    /**
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldName
-     *
-     * @return string|null
-     */
     protected function getEntityAdder(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntityAdder', $fieldName);
     }
 
-    /**
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldName
-     *
-     * @return string|null
-     */
     protected function getEntityRemover(object $entityToFill, FieldOptions $fieldOptions, string $fieldName): ?string
     {
         return $this->getEntityMethod($entityToFill, $fieldOptions, 'getEntityRemover', $fieldName);
     }
 
-    /**
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldOptionsGetter
-     * @param string $fieldName
-     *
-     * @return string|null
-     */
     protected function getEntityMethod(object $entityToFill, FieldOptions $fieldOptions, string $fieldOptionsGetter, string $fieldName): ?string
     {
         $entityMethod = $fieldOptions->{$fieldOptionsGetter}();
@@ -226,7 +156,7 @@ abstract class ApiResourceTransformer
             return $entityMethod;
         }
 
-        if (false !== strpos($fieldName, '_id')) {
+        if (str_contains($fieldName, '_id')) {
             $entityMethod = $this->composeEntityMethod($methodPrefix, str_replace('_id', '', $fieldName), $entityToFill);
 
             if (method_exists($entityToFill, $entityMethod)) {
@@ -237,25 +167,12 @@ abstract class ApiResourceTransformer
         throw new \InvalidArgumentException(sprintf('Entity method %s does not exist in entity %s.', $entityMethod, get_class($entityToFill)));
     }
 
-    /**
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldName
-     * @param $value
-     */
     protected function setFieldWithEntitySetter(object $entityToFill, FieldOptions $fieldOptions, string $fieldName, $value): void
     {
         $entitySetter = $this->getEntitySetter($entityToFill, $fieldOptions, $fieldName);
         $entityToFill->{$entitySetter}($value);
     }
 
-    /**
-     * @param Collection $currentCollection
-     * @param Collection $newCollection
-     * @param object $entityToFill
-     * @param FieldOptions $fieldOptions
-     * @param string $fieldName
-     */
     protected function updateCollectionItems(Collection $currentCollection, Collection $newCollection, object $entityToFill, FieldOptions $fieldOptions, string $fieldName): void
     {
         $entityAdder = $this->getEntityAdder($entityToFill, $fieldOptions, $fieldName);
@@ -274,16 +191,8 @@ abstract class ApiResourceTransformer
         }
     }
 
-    /**
-     * @param string $fieldOptionsGetter
-     * @param string $fieldName
-     *
-     * @return array|string
-     */
-    protected function getMethodPrefix(string $fieldOptionsGetter, string &$fieldName)
+    protected function getMethodPrefix(string $fieldOptionsGetter, string &$fieldName): string|array
     {
-        $methodPrefix = null;
-
         switch ($fieldOptionsGetter) {
             case 'getEntityGetter':
                 $methodPrefix = ['get', '', 'is'];
@@ -306,36 +215,23 @@ abstract class ApiResourceTransformer
         return $methodPrefix;
     }
 
-    /**
-     * @param array|string $methodPrefix
-     * @param string $fieldName
-     * @param object $entityToFill
-     *
-     * @return string
-     */
-    protected function composeEntityMethod($methodPrefix, string $fieldName, object $entityToFill): string
+    protected function composeEntityMethod(string|array $methodPrefix, string $fieldName, object $entityToFill): string
     {
         if (is_array($methodPrefix)) {
             foreach ($methodPrefix as $prefix) {
                 $entityMethod = $prefix . ucfirst($this->toCamelCase($fieldName));
 
                 if (method_exists($entityToFill, $entityMethod)) {
-                    break;
+                    return $entityMethod;
                 }
             }
-        } else {
-            $entityMethod = $methodPrefix . ucfirst($this->toCamelCase($fieldName));
+
+            throw new \InvalidArgumentException('No matching method found for field name: ' . $fieldName);
         }
 
-        return $entityMethod;
+        return $methodPrefix . ucfirst($this->toCamelCase($fieldName));
     }
 
-    /**
-     * @param array $data
-     * @param array $writeableFields
-     *
-     * @return array
-     */
     protected function flattenDataArray(array $data, array $writeableFields): array
     {
         $flatData = [];

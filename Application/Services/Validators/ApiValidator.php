@@ -9,7 +9,12 @@ use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 abstract class ApiValidator implements ApiValidatorInterface
 {
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    /**
+     * @throws ValueNotAllowedException
+     * @throws RequiredFieldMissingException
+     * @throws PermissionDeniedException
+     */
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, $oldValue = null)
     {
         if (null === $value && true === $fieldOptions->isRequired()) {
             throw new RequiredFieldMissingException($fieldName, 'Value cannot be null.');

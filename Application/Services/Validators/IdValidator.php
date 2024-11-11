@@ -13,20 +13,13 @@ use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 class IdValidator extends EntityValidator
 {
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
      * @throws FieldTypeException
      * @throws LinkedObjectNotFoundException
      * @throws RequiredFieldMissingException
      * @throws PermissionDeniedException
      * @throws ValueNotAllowedException
-     *
-     * @return object
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, $oldValue = null)
     {
         if (!$fieldOptions instanceof IdField) {
             throw new FieldTypeException($fieldName, sprintf(
@@ -48,7 +41,7 @@ class IdValidator extends EntityValidator
             return $this->getEntity($value, $fieldName, $fieldOptions, null, $fieldOptions->getIdFieldName());
         }
 
-        return $value;
+        return null;
     }
 
     public function getType(): string

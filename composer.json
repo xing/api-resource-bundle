@@ -2,11 +2,11 @@
     "name": "ps/api-resource-bundle",
     "type": "symfony-bundle",
     "description": "This bundle provides easy to use API resources for serialization and deserialization.",
-    "homepage": "https://prescreen.io",
+    "homepage": "https://xing.com",
     "license": "MIT",
     "config": {
         "platform": {
-            "php": "7.4"
+            "php": "8.3"
         },
         "allow-plugins": {
             "composer/package-versions-deprecated": true
@@ -18,7 +18,7 @@
         }
     },
     "require": {
-        "php": "^7.2|^8.0",
+        "php": "^8.3",
         "symfony/config": "^4.4|^5.0|^6.4",
         "symfony/http-kernel": "^4.4|^5.0|^6.4",
         "doctrine/orm": "^2.7",
@@ -31,7 +31,7 @@
     "authors": [
         {
             "name": "Florian Hofinger",
-            "email": "florian.hofinger@prescreen.io"
+            "email": "florian.hofinger@xing.com"
         }
     ]
 }

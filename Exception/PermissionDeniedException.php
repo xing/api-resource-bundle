@@ -2,6 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Exception;
 
-class PermissionDeniedException extends InternalApiValidatorException
+class PermissionDeniedException extends ApiValidatorException
 {
 }

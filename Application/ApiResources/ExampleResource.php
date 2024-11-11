@@ -7,22 +7,13 @@ use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
 
 class ExampleResource implements ApiResource
 {
+    public int $id;
+    public string $name;
+    public bool $is_cool;
     /**
-     * @var int
+     * @var ExampleTranslationResource[]
      */
-    public $id;
-    /**
-     * @var string
-     */
-    public $name;
-    /**
-     * @var bool
-     */
-    public $is_cool;
-    /**
-     * @var array<ExampleTranslationResource>
-     */
-    public $translations;
+    public array $translations;
 
     public static function fromEntity(object $entity): ApiResource
     {
@@ -31,9 +22,10 @@ class ExampleResource implements ApiResource
         $resource->id = $entity->getId();
         $resource->name = $entity->getName();
         $resource->is_cool = $entity->isCool();
-        $resource->translations = $entity->getTranslations()->map(function (ExampleTranslationEntity $exampleTranslationEntity) {
-            return ExampleTranslationResource::fromEntity($exampleTranslationEntity);
-        });
+        $resource->translations = $entity->getTranslations()
+            ->map(static fn (ExampleTranslationEntity $exampleTranslationEntity) =>
+                ExampleTranslationResource::fromEntity($exampleTranslationEntity)
+            );
 
         return $resource;
     }

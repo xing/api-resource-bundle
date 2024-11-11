@@ -9,30 +9,13 @@ use Doctrine\ORM\EntityRepository;
 
 abstract class EntityValidator extends ApiValidator
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-    /**
-     * @var EntityRepository
-     */
-    protected $repository;
+    protected EntityRepository $repository;
 
-    /**
-     * @param EntityManagerInterface $em
-     */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(protected readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     /**
-     * @param int $id
-     * @param string $fieldName
-     * @param FieldOptions $fieldOptions
-     * @param string|null $entityClass
-     * @param string $idFieldName
-     * @return object
      * @throws LinkedObjectNotFoundException
      */
     protected function getEntity(int $id, string $fieldName, FieldOptions $fieldOptions, string $entityClass = null, string $idFieldName = 'id'): object
@@ -51,11 +34,6 @@ abstract class EntityValidator extends ApiValidator
     }
 
     /**
-     * @param $entity
-     * @param string $fieldName
-     * @param int $id
-     * @param string $entityClass
-     *
      * @throws LinkedObjectNotFoundException
      */
     protected function checkIfEntityNotNull($entity, string $fieldName, int $id, string $entityClass): void

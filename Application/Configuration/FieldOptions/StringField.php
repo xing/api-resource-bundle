@@ -4,13 +4,14 @@ namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
 class StringField extends FieldOptions
 {
-    const TYPE = 'string';
+    const string TYPE = 'string';
 
-    /**
-     * @param bool $required
-     */
-    public function __construct(bool $required = false)
-    {
+    public function __construct(
+        bool $required = false,
+        ?string $regex = null,
+    ) {
         parent::__construct(self::TYPE, $required);
+
+        $this->regex = $regex;
     }
 }

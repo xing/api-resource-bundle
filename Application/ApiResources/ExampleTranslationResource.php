@@ -6,18 +6,9 @@ use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
 
 class ExampleTranslationResource implements ApiResource
 {
-    /**
-     * @var int
-     */
-    public $id;
-    /**
-     * @var string
-     */
-    public $name;
-    /**
-     * @var string
-     */
-    public $locale;
+    public int $id;
+    public string $name;
+    public string $locale;
 
     public static function fromEntity(object $entity): ApiResource
     {

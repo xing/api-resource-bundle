@@ -6,7 +6,7 @@ use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOpti
 
 interface ApiValidatorInterface
 {
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue);
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue);
 
     public function getType(): string;
 }

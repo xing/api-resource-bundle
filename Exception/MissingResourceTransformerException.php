@@ -2,6 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Exception;
 
-class MissingResourceTransformerException extends InternalApiValidatorException
+class MissingResourceTransformerException extends ApiValidatorException
 {
 }

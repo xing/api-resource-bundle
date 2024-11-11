@@ -9,41 +9,28 @@ use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegis
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
+use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class ResourceValidator extends EntityValidator
 {
-    /**
-     * @var ApiResourceTransformerRegistry
-     */
-    protected $apiResourceTransformerRegistry;
-
-    /**
-     * @param EntityManagerInterface $em
-     * @param ApiResourceTransformerRegistry $internalApiResourceTransformerRegistry
-     */
-    public function __construct(EntityManagerInterface $em, ApiResourceTransformerRegistry $internalApiResourceTransformerRegistry)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        protected readonly ApiResourceTransformerRegistry $apiResourceTransformerRegistry
+    ) {
         parent::__construct($em);
-        $this->apiResourceTransformerRegistry = $internalApiResourceTransformerRegistry;
     }
 
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
      * @throws FieldTypeException
      * @throws LinkedObjectNotFoundException
      * @throws MissingResourceTransformerException
      * @throws RequiredFieldMissingException
-     * @throws \ApiResourceBundle\Exception\PermissionDeniedException
-     * @throws \ApiResourceBundle\Exception\ValueNotAllowedException
-     *
-     * @return object
+     * @throws PermissionDeniedException
+     * @throws ValueNotAllowedException
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null)
     {
         if (!$fieldOptions instanceof ResourceField) {
             throw new FieldTypeException($fieldName, sprintf(
@@ -55,7 +42,7 @@ class ResourceValidator extends EntityValidator
 
         try {
             $resourceTransformer = $this->apiResourceTransformerRegistry->get($fieldOptions->getResourceClass());
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException) {
             throw new MissingResourceTransformerException($fieldName, sprintf('No resource transformer has been registered for the resource %s.', $fieldOptions->getResourceClass()));
         }
 
@@ -89,7 +76,7 @@ class ResourceValidator extends EntityValidator
             return null;
         }
 
-        return $value;
+        return null;
     }
 
     public function getType(): string
