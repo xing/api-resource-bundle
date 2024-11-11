@@ -9,46 +9,31 @@ use PHPUnit\Framework\TestCase;
 
 class StringValidatorTest extends TestCase
 {
-    /**
-     * @var StringValidator
-     */
-    private $testService;
+    private StringValidator $testService;
 
     public function setUp(): void
     {
         $this->testService = new StringValidator();
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsNotOfTypeStringThenThrowException()
+    public function testItThrowsExceptionIfValueIsNotOfTypeString(): void
     {
         $this->expectException(FieldTypeException::class);
 
         $this->testService->validate('string', false, new StringField());
     }
 
-    /**
-     * @test
-     */
-    public function givenValidStringValueThenReturnIt()
+    public function testItReturnsValueIfGivenValidString(): void
     {
         $this->assertSame('Some value', $this->testService->validate('string', 'Some value', new StringField()));
     }
 
-    /**
-     * @test
-     */
-    public function givenFieldIsNotRequiredAndValueIsNullThenReturnNull()
+    public function testItReturnsNullIfFieldIsNotRequiredAndValueIsNull(): void
     {
         $this->assertNull($this->testService->validate('string', null, new StringField()));
     }
 
-    /**
-     * @test
-     */
-    public function itIsOfTypeString()
+    public function testItIsOfTypeString(): void
     {
         $this->assertSame(StringField::TYPE, $this->testService->getType());
     }

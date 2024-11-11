@@ -13,7 +13,7 @@ class ExampleResource implements ApiResource
     /**
      * @var ExampleTranslationResource[]
      */
-    public array $translations;
+    public iterable $translations;
 
     public static function fromEntity(object $entity): ApiResource
     {

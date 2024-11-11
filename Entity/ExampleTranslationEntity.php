@@ -4,9 +4,9 @@ namespace Prescreen\ApiResourceBundle\Entity;
 
 class ExampleTranslationEntity
 {
-    private int $id;
-    private string $name;
-    private string $locale;
+    private ?int $id = null;
+    private ?string $name = null;
+    private ?string $locale = null;
 
     public function getId(): ?int
     {

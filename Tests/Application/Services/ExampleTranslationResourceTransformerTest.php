@@ -10,14 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleTranslationResourceTransformerTest extends TestCase
 {
-    /**
-     * @var ApiValidatorRegistry
-     */
-    protected $apiValidatorRegistry;
-    /**
-     * @var ExampleTranslationResourceTransformer
-     */
-    private $testService;
+    protected ApiValidatorRegistry $apiValidatorRegistry;
+    private ExampleTranslationResourceTransformer $testService;
 
     public function setUp(): void
     {
@@ -25,10 +19,7 @@ class ExampleTranslationResourceTransformerTest extends TestCase
         $this->testService = new ExampleTranslationResourceTransformer($this->apiValidatorRegistry);
     }
 
-    /**
-     * @test
-     */
-    public function givenArrayThenFillEntity()
+    public function testItFillsEntityFromGivenArray(): void
     {
         $entity = new ExampleTranslationEntity();
 
@@ -50,10 +41,7 @@ class ExampleTranslationResourceTransformerTest extends TestCase
         $this->assertEquals('en', $entity->getLocale());
     }
 
-    /**
-     * @test
-     */
-    public function givenEntityThenFillResource()
+    public function testItFillsResourceFieldsFromGivenEntity(): void
     {
         $entity = new ExampleTranslationEntity();
         $entity->setId(1);

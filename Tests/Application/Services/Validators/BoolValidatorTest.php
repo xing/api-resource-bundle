@@ -9,38 +9,26 @@ use PHPUnit\Framework\TestCase;
 
 class BoolValidatorTest extends TestCase
 {
-    /**
-     * @var BoolValidator
-     */
-    private $testService;
+    private BoolValidator $testService;
 
     public function setUp(): void
     {
         $this->testService = new BoolValidator();
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsNotOfTypeBoolThenThrowException()
+    public function testItThrowsExceptionIfValueIsNotOfTypeBool(): void
     {
         $this->expectException(FieldTypeException::class);
 
         $this->testService->validate('someField', 'string value', new BoolField());
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsOfTypeBoolThenReturnIt()
+    public function testItReturnsValueIfItIsOfTypeBool(): void
     {
         $this->assertTrue($this->testService->validate('someField', true, new BoolField()));
     }
 
-    /**
-     * @test
-     */
-    public function itIsOfTypeBool()
+    public function testItIsOfTypeBool(): void
     {
         $this->assertSame(BoolField::TYPE, $this->testService->getType());
     }

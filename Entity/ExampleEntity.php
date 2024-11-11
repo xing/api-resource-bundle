@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\Collection;
 
 class ExampleEntity
 {
-    private int $id;
-    private string $name;
+    private ?int $id = null;
+    private ?string $name = null;
     private bool $isCool = true;
     private Collection $translations;
 

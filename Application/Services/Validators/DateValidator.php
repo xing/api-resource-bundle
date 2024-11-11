@@ -19,7 +19,7 @@ class DateValidator extends ApiValidator
      * @throws PermissionDeniedException
      * @throws ValueNotAllowedException
      */
-    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): DateTime
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): ?DateTime
     {
         parent::validate($fieldName, $value, $fieldOptions, $oldValue);
 

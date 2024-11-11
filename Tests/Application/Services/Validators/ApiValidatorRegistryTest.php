@@ -8,14 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class ApiValidatorRegistryTest extends TestCase
 {
-    /**
-     * @var iterable
-     */
-    private $validators;
-    /**
-     * @var ApiValidatorRegistry
-     */
-    private $testService;
+    private iterable $validators;
+    private ApiValidatorRegistry $testService;
 
     public function setUp(): void
     {
@@ -28,20 +22,14 @@ class ApiValidatorRegistryTest extends TestCase
         $this->testService = new ApiValidatorRegistry($this->validators);
     }
 
-    /**
-     * @test
-     */
-    public function givenValidatorDoesNotExistForGivenNameThenThrowException()
+    public function testItThrowsExceptionIfValidatorDoesNotExistForGivenType(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
         $this->testService->get('foo');
     }
 
-    /**
-     * @test
-     */
-    public function givenNameThenReturnValidator()
+    public function testItReturnsValidatorForGivenType(): void
     {
         $this->assertInstanceOf(ApiValidatorInterface::class, $this->testService->get('int'));
     }
