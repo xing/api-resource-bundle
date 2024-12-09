@@ -11,6 +11,10 @@ use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegi
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 
+/**
+ * @template TEntity of object
+ * @template TResource of ApiResource
+ */
 abstract class ApiResourceTransformer
 {
     use CaseConverter;
@@ -32,20 +36,30 @@ abstract class ApiResourceTransformer
         $this->apiValidatorRegistry = $apiValidatorRegistry;
     }
 
+    /**
+     * @return class-string<TEntity>
+     */
     abstract public function getEntityClass(): string;
 
+    /**
+     * @return class-string<TResource>
+     */
     abstract public function getResourceClass(): string;
 
+    /**
+     * @param TEntity $entity
+     * @param TResource $resource
+     */
     abstract protected function setResourceFields(object $entity, ApiResource $resource): void;
 
     abstract protected function getWriteableFields(): array;
 
     /**
-     * @param object $entity
+     * @param TEntity $entity
      *
      * @throws WrongObjectTypeGivenException
      *
-     * @return ApiResource
+     * @return TResource
      */
     public function fromEntity(object $entity): ApiResource
     {
@@ -59,11 +73,11 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param iterable $iterable
+     * @param iterable<TEntity> $iterable
      *
      * @throws WrongObjectTypeGivenException
      *
-     * @return iterable
+     * @return iterable<TResource>
      */
     public function fromIterable(iterable $iterable): iterable
     {
@@ -77,7 +91,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entity
+     * @param TEntity $entity
      *
      * @throws WrongObjectTypeGivenException
      */
@@ -92,11 +106,11 @@ abstract class ApiResourceTransformer
 
     /**
      * @param array $data
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      *
      * @throws RequiredFieldMissingException
      *
-     * @return object
+     * @return TEntity
      */
     public function fromArray(array $data, object $entityToFill): object
     {
@@ -145,9 +159,9 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entity
+     * @param TEntity $entity
      *
-     * @return ApiResource
+     * @return TResource
      */
     protected function createResource(object $entity): ApiResource
     {
@@ -157,7 +171,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      *
@@ -169,7 +183,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      *
@@ -181,7 +195,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      *
@@ -193,7 +207,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      *
@@ -205,7 +219,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldOptionsGetter
      * @param string $fieldName
@@ -238,7 +252,7 @@ abstract class ApiResourceTransformer
     }
 
     /**
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      * @param $value
@@ -252,7 +266,7 @@ abstract class ApiResourceTransformer
     /**
      * @param Collection $currentCollection
      * @param Collection $newCollection
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      * @param FieldOptions $fieldOptions
      * @param string $fieldName
      */
@@ -309,7 +323,7 @@ abstract class ApiResourceTransformer
     /**
      * @param array|string $methodPrefix
      * @param string $fieldName
-     * @param object $entityToFill
+     * @param TEntity $entityToFill
      *
      * @return string
      */
