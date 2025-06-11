@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Repository;
+namespace Prescreen\ApiResourceBundle\src\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

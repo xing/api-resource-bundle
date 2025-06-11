@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle;
+namespace Prescreen\ApiResourceBundle\src;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;

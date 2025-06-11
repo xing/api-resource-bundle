@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Exception;
+namespace Prescreen\ApiResourceBundle\src\Exception;
 
 class ApiValidatorException extends \Exception
 {

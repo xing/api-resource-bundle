@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Infrastructure;
+namespace Prescreen\ApiResourceBundle\src\Infrastructure;
 
 /**
  * The MIT License (MIT)

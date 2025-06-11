@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Exception;
+namespace Prescreen\ApiResourceBundle\src\Exception;
 
-use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
+use Prescreen\ApiResourceBundle\src\Exception\ApiValidatorException;
 
 class FieldTypeException extends ApiValidatorException
 {

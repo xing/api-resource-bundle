@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services;
+namespace Prescreen\ApiResourceBundle\src\Application\Services;
 
 class ApiResourceTransformerRegistry
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services;
+namespace Prescreen\ApiResourceBundle\src\Application\Services;
 
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleTranslationResource;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
-use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
-use Prescreen\ApiResourceBundle\Application\Services\PermissionValidators\CoolPermissionValidator;
-use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
+use Prescreen\ApiResourceBundle\src\Application\ApiResources\ExampleResource;
+use Prescreen\ApiResourceBundle\src\Application\ApiResources\ExampleTranslationResource;
+use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\BoolField;
+use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\StringField;
+use Prescreen\ApiResourceBundle\src\Application\Interfaces\ApiResource;
+use Prescreen\ApiResourceBundle\src\Application\Services\PermissionValidators\CoolPermissionValidator;
+use Prescreen\ApiResourceBundle\src\Entity\ExampleEntity;
 
 class ExampleResourceTransformer extends ApiResourceTransformer
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\src\Application\Services\Validators;
 
 use DateTime;
 use Exception;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\DateField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
-use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
+use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\DateField;
+use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\src\Exception\FieldTypeException;
+use Prescreen\ApiResourceBundle\src\Exception\PermissionDeniedException;
+use Prescreen\ApiResourceBundle\src\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\src\Exception\ValueNotAllowedException;
 
 class DateValidator extends ApiValidator
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\ApiResources;
+namespace Prescreen\ApiResourceBundle\src\Application\ApiResources;
 
-use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
-use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
+use Prescreen\ApiResourceBundle\src\Application\Interfaces\ApiResource;
+use Prescreen\ApiResourceBundle\src\Entity\ExampleTranslationEntity;
 
 class ExampleResource implements ApiResource
 {

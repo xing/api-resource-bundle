@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Entity;
+namespace Prescreen\ApiResourceBundle\src\Entity;
 
 class ExampleTranslationEntity
 {

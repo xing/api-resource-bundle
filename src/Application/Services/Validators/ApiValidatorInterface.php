@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\src\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\FieldOptions;
 
 interface ApiValidatorInterface
 {

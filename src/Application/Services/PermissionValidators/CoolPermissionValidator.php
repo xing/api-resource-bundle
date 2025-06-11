@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\PermissionValidators;
+namespace Prescreen\ApiResourceBundle\src\Application\Services\PermissionValidators;
 
-use Prescreen\ApiResourceBundle\Application\Interfaces\PermissionValidator;
+use Prescreen\ApiResourceBundle\src\Application\Interfaces\PermissionValidator;
 
 readonly class CoolPermissionValidator implements PermissionValidator
 {
