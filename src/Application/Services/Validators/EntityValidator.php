@@ -3,9 +3,9 @@
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
-use Doctrine\ORM\EntityRepository;
 
 abstract class EntityValidator extends ApiValidator
 {

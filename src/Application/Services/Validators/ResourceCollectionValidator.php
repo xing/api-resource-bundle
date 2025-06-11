@@ -8,9 +8,7 @@ use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceC
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
-use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class ResourceCollectionValidator extends ResourceValidator
 {
