@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Services\Traits;
+namespace Prescreen\ApiResourceBundle\Application\Services\Traits;
 
 trait CaseConverter
 {

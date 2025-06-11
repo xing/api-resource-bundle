@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 class ApiValidatorRegistry
 {

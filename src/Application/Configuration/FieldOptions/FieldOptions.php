@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions;
+namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
-use Prescreen\ApiResourceBundle\src\Application\Interfaces\PermissionValidator;
+use Prescreen\ApiResourceBundle\Application\Interfaces\PermissionValidator;
 
 class FieldOptions
 {

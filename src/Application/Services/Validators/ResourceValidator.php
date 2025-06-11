@@ -1,17 +1,17 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\ResourceField;
-use Prescreen\ApiResourceBundle\src\Application\Services\ApiResourceTransformerRegistry;
-use Prescreen\ApiResourceBundle\src\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\src\Exception\LinkedObjectNotFoundException;
-use Prescreen\ApiResourceBundle\src\Exception\MissingResourceTransformerException;
-use Prescreen\ApiResourceBundle\src\Exception\PermissionDeniedException;
-use Prescreen\ApiResourceBundle\src\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\src\Exception\ValueNotAllowedException;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
+use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
+use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
+use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
+use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class ResourceValidator extends EntityValidator
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Command;
+namespace Prescreen\ApiResourceBundle\Command;
 
-use Prescreen\ApiResourceBundle\src\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\src\Infrastructure\Services\CreateApiResourceService;
+use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
+use Prescreen\ApiResourceBundle\Infrastructure\Services\CreateApiResourceService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
