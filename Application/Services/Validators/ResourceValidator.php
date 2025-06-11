@@ -5,6 +5,7 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 use Doctrine\ORM\EntityManagerInterface;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
@@ -57,16 +58,29 @@ class ResourceValidator extends EntityValidator
 
             $entity = null;
 
-            if (isset($value['id'])) {
-                $entity = $this->getEntity($value['id'], $fieldName, $fieldOptions, $resourceTransformer->getEntityClass());
+            if (isset($value[$fieldOptions->getUniqueIdentifierField()])) {
+                $entity = $this->getEntity(
+                    $value[$fieldOptions->getUniqueIdentifierField()],
+                    $fieldName,
+                    $fieldOptions,
+                    $resourceTransformer->getEntityClass(),
+                    $fieldOptions->getUniqueIdentifierField(),
+                    $fieldOptions->getUniqueIdentifierField() === 'id',
+                );
+
+                if (null === $entity && true === $fieldOptions->isCreateIfNotExists()) {
+                    $entity = $this->createNewEntityInstance($resourceTransformer);
+                }
             } elseif (true === $fieldOptions->isCreateIfNotExists()) {
-                $entityClass = $resourceTransformer->getEntityClass();
-                $entity = new $entityClass;
-                $this->em->persist($entity);
+                $entity = $this->createNewEntityInstance($resourceTransformer);
             }
 
             if (null !== $entity) {
                 $resourceTransformer->fromArray($value, $entity);
+
+                if ($fieldOptions->isPersist()) {
+                    $this->em->persist($entity);
+                }
 
                 return $entity;
             } elseif (true === $fieldOptions->isRequired()) {
@@ -82,5 +96,11 @@ class ResourceValidator extends EntityValidator
     public function getType(): string
     {
         return ResourceField::TYPE;
+    }
+
+    public function createNewEntityInstance(ApiResourceTransformer $resourceTransformer): object
+    {
+        $entityClass = $resourceTransformer->getEntityClass();
+        return new $entityClass;
     }
 }

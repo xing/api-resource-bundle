@@ -18,7 +18,9 @@ class ResourceCollectionValidator extends ResourceValidator
      * @throws FieldTypeException
      * @throws LinkedObjectNotFoundException
      * @throws MissingResourceTransformerException
+     * @throws PermissionDeniedException
      * @throws RequiredFieldMissingException
+     * @throws ValueNotAllowedException
      */
     public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): ?ArrayCollection
     {

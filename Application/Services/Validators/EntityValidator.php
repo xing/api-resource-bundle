@@ -18,8 +18,14 @@ abstract class EntityValidator extends ApiValidator
     /**
      * @throws LinkedObjectNotFoundException
      */
-    protected function getEntity(int $id, string $fieldName, FieldOptions $fieldOptions, string $entityClass = null, string $idFieldName = 'id'): object
-    {
+    protected function getEntity(
+        int $id,
+        string $fieldName,
+        FieldOptions $fieldOptions,
+        string $entityClass = null,
+        string $idFieldName = 'id',
+        bool $throwExceptionOnNull = true,
+    ): ?object {
         $entity = $this->repository->findOneBy([
             $idFieldName => $id
         ]);
@@ -28,7 +34,9 @@ abstract class EntityValidator extends ApiValidator
             $entityClass = $fieldOptions->getEntityClass();
         }
 
-        $this->checkIfEntityNotNull($entity, $fieldName, $id, $entityClass);
+        if (true === $throwExceptionOnNull) {
+            $this->checkIfEntityNotNull($entity, $fieldName, $id, $entityClass);
+        }
 
         return $entity;
     }

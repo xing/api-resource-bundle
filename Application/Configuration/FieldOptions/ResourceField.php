@@ -11,6 +11,8 @@ class ResourceField extends FieldOptions
         protected readonly bool $createIfNotExists = false,
         bool $required = false,
         string $type = self::TYPE,
+        private readonly bool $persist = true,
+        private readonly string $uniqueIdentifierField = 'id',
     ) {
         parent::__construct($type, $required);
     }
@@ -23,5 +25,15 @@ class ResourceField extends FieldOptions
     public function isCreateIfNotExists(): bool
     {
         return $this->createIfNotExists;
+    }
+
+    public function isPersist(): bool
+    {
+        return $this->persist;
+    }
+
+    public function getUniqueIdentifierField(): string
+    {
+        return $this->uniqueIdentifierField;
     }
 }

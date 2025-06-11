@@ -4,7 +4,7 @@ namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
 class ResourceCollectionField extends ResourceField
 {
-    const string TYPE = 'resource_collection';
+    const TYPE = 'resource_collection';
 
     public function __construct(
         string $resourceClass,
@@ -12,8 +12,17 @@ class ResourceCollectionField extends ResourceField
         bool $required = false,
         protected readonly ?string $entityAdder = null,
         protected readonly ?string $entityRemover = null,
+        bool $persist = true,
+        string $uniqueIdentifierField = 'id',
     ) {
-        parent::__construct($resourceClass, $createIfNotExists, $required, self::TYPE);
+        parent::__construct(
+            $resourceClass,
+            $createIfNotExists,
+            $required,
+            self::TYPE,
+            $persist,
+            $uniqueIdentifierField,
+        );
     }
 
     public function getEntityAdder(): ?string
