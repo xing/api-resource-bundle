@@ -13,7 +13,7 @@ services:
     # Validators
     Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
         arguments:
-            - !tagged_iterator api_resource.validator
+            $apiValidators: !tagged_iterator api_resource.validator
 
     Prescreen\ApiResourceBundle\Application\Services\Validators\:
         resource: '../src/Application/Services/Validators/*'
