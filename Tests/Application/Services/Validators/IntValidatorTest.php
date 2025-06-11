@@ -10,56 +10,38 @@ use PHPUnit\Framework\TestCase;
 
 class IntValidatorTest extends TestCase
 {
-    /**
-     * @var IntValidator
-     */
-    private $testService;
+    private IntValidator $testService;
 
     public function setUp(): void
     {
         $this->testService = new IntValidator();
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsNotOfTypeIntThenThrowException()
+    public function testItThrowsExceptionIfValueIsNotOfTypeInt(): void
     {
         $this->expectException(FieldTypeException::class);
 
         $this->testService->validate('int', 'string value', new IntField());
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsOutOfRangeThenThrowException()
+    public function testItThrowsExceptionIfValueIsOutOfRange(): void
     {
         $this->expectException(FieldOutOfRangeException::class);
 
         $this->testService->validate('int', 5000, new IntField(1, 5));
     }
 
-    /**
-     * @test
-     */
-    public function givenValidIntValueThenReturnIt()
+    public function testItReturnsValueIfItIsValidInt(): void
     {
         $this->assertSame(1, $this->testService->validate('int', 1, new IntField(1, 5)));
     }
 
-    /**
-     * @test
-     */
-    public function givenFieldIsNotRequiredAndValueIsNullThenReturnNull()
+    public function testItReturnsNullIfFieldIsNotRequiredAndValueIsNull(): void
     {
         $this->assertNull($this->testService->validate('int', null, new IntField()));
     }
 
-    /**
-     * @test
-     */
-    public function itIsOfTypeInt()
+    public function testItIsOfTypeInt(): void
     {
         $this->assertSame(IntField::TYPE, $this->testService->getType());
     }

@@ -19,18 +19,9 @@ use PHPUnit\Framework\TestCase;
 
 class ResourceValidatorTest extends TestCase
 {
-    /**
-     * @var ApiResourceTransformerRegistry
-     */
-    protected $apiResourceTransformerRegistry;
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-    /**
-     * @var ResourceValidator
-     */
-    private $testService;
+    protected ApiResourceTransformerRegistry $apiResourceTransformerRegistry;
+    protected EntityManagerInterface $em;
+    private ResourceValidator $testService;
 
     public function setUp(): void
     {
@@ -39,20 +30,14 @@ class ResourceValidatorTest extends TestCase
         $this->testService = new ResourceValidator($this->em, $this->apiResourceTransformerRegistry);
     }
 
-    /**
-     * @test
-     */
-    public function givenFieldOptionsAreNotOfTypeResourceFieldThenThrowException()
+    public function testItThrowsExceptionIfFieldOptionsAreNotOfTypeResourceField(): void
     {
         $this->expectException(FieldTypeException::class);
 
         $this->testService->validate('resource_field', null, new IdField(ExampleEntity::class));
     }
 
-    /**
-     * @test
-     */
-    public function givenResourceTransformerForResourceHasNotBeenRegisteredThenThrowException()
+    public function testItThrowsExceptionIfResourceTransformerForResourceHasNotBeenRegistered(): void
     {
         $this->expectException(MissingResourceTransformerException::class);
 
@@ -61,46 +46,37 @@ class ResourceValidatorTest extends TestCase
         $this->testService->validate('resource_field', null, new ResourceField(ExampleResource::class));
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsNotOfTypeArrayThenThrowException()
+    public function testItThrowsExceptionIfValueIsNotOfTypeArray(): void
     {
         $this->expectException(FieldTypeException::class);
 
+        $this->expectRepositoryToBeFound();
         $this->expectResourceTransformerToBeReturned();
 
         $this->testService->validate('resource_field', 1, $this->createResourceField(false, true));
     }
 
-    /**
-     * @test
-     */
-    public function givenEntityIsNullButFieldIsRequiredThenThrowException()
+    public function testItThrowsExceptionIfEntityIsNullButFieldIsRequired(): void
     {
         $this->expectException(RequiredFieldMissingException::class);
 
+        $this->expectRepositoryToBeFound();
         $this->expectResourceTransformerToBeReturned();
 
         $this->testService->validate('resource_field', ['foo' => 1], $this->createResourceField(false, true));
     }
 
-    /**
-     * @test
-     */
-    public function givenNoIdAndResourceShouldNotBeCreatedButFieldIsRequiredThenThrowException()
+    public function testItThrowsExceptionIfNoIdAndResourceShouldNotBeCreatedButFieldIsRequired(): void
     {
         $this->expectException(RequiredFieldMissingException::class);
 
+        $this->expectRepositoryToBeFound();
         $this->expectResourceTransformerToBeReturned();
 
         $this->testService->validate('resource_field', ['foo' => 1], $this->createResourceField(false, true));
     }
 
-    /**
-     * @test
-     */
-    public function givenIdThenGetEntityFromRepository()
+    public function testItGetsEntityWithRepositoryIfGivenId(): void
     {
         $resourceTransformer = $this->expectResourceTransformerToBeReturned();
         $resourceTransformer->method('getEntityClass')->willReturn(ExampleEntity::class);
@@ -108,22 +84,21 @@ class ResourceValidatorTest extends TestCase
 
         $repository = $this->expectRepositoryToBeFound();
         $exampleEntity = new ExampleEntity();
-        $repository->expects($this->once())->method('find')->willReturn($exampleEntity);
+        $repository->expects($this->once())->method('findOneBy')->willReturn($exampleEntity);
 
         $fieldOptions = $this->createResourceField(false, true);
 
         $this->testService->validate('resource_field', ['id' => 1], $fieldOptions);
     }
 
-    /**
-     * @test
-     */
-    public function givenNoIdAndCreateIfNotExistsThenCreateNewEntityFromResource()
+    public function testItCreatesNewEntityFromResourceIfNoIdAndCreateIfNotExistsGiven(): void
     {
         $resourceTransformer = $this->expectResourceTransformerToBeReturned();
         $resourceTransformer->method('getEntityClass')->willReturn(ExampleEntity::class);
 
         $fieldOptions = $this->createResourceField(true, true);
+
+        $this->expectRepositoryToBeFound();
 
         $this->em->expects($this->once())->method('persist');
 
@@ -132,38 +107,28 @@ class ResourceValidatorTest extends TestCase
         $this->assertInstanceOf(ExampleEntity::class, $returnedEntity);
     }
 
-    /**
-     * @test
-     */
-    public function givenNoIdAndNoCreateIfNotExistsAndFieldIsNotRequiredThenReturnNull()
+    public function testItReturnsNullIfNoIdAndNoCreateIfNotExistsAndFieldIsNotRequired(): void
     {
         $this->expectResourceTransformerToBeReturned();
+        $this->expectRepositoryToBeFound();
 
         $this->assertNull($this->testService->validate('resource_field', ['foo' => 'bar'], $this->createResourceField(false, false)));
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsNullAndFieldIsNotRequiredThenReturnNull()
+    public function testItReturnsNullIfValueIsNullAndFieldIsNotRequired(): void
     {
         $this->expectResourceTransformerToBeReturned();
+        $this->expectRepositoryToBeFound();
 
         $this->assertNull($this->testService->validate('resource_field', null, $this->createResourceField(false, false)));
     }
 
-    /**
-     * @test
-     */
-    public function itIsOfTypeResource()
+    public function testItIsOfTypeResource(): void
     {
         $this->assertEquals(ResourceField::TYPE, $this->testService->getType());
     }
 
-    /**
-     * @return ApiResourceTransformer
-     */
-    private function expectResourceTransformerToBeReturned(): ApiResourceTransformer
+    private function expectResourceTransformerToBeReturned(): ApiResourceTransformer&MockObject
     {
         $resourceTransformer = $this->createMock(ApiResourceTransformer::class);
 
@@ -172,20 +137,11 @@ class ResourceValidatorTest extends TestCase
         return $resourceTransformer;
     }
 
-    /**
-     * @param bool $createIfNotExists
-     * @param bool $required
-     *
-     * @return ResourceField
-     */
     private function createResourceField(bool $createIfNotExists = false, bool $required = false): ResourceField
     {
         return new ResourceField(ExampleResource::class, $createIfNotExists, $required);
     }
 
-    /**
-     * @return MockObject
-     */
     private function expectRepositoryToBeFound(): MockObject
     {
         $repository = $this->createMock(EntityRepository::class);

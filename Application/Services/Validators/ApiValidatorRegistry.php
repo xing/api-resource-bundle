@@ -5,29 +5,20 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 class ApiValidatorRegistry
 {
     /**
-     * @var iterable
+     * @param iterable<ApiValidatorInterface> $apiValidators
      */
-    private $internalApiValidators;
-
-    public function __construct(iterable $apiValidators)
+    public function __construct(private readonly iterable $apiValidators)
     {
-        $this->internalApiValidators = $apiValidators;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return ApiValidatorInterface
-     */
     public function get(string $name): ApiValidatorInterface
     {
-        /** @var ApiValidatorInterface $internalApiValidator */
-        foreach ($this->internalApiValidators as $internalApiValidator) {
-            if ($internalApiValidator->getType() === $name) {
-                return $internalApiValidator;
+        foreach ($this->apiValidators as $apiValidator) {
+            if ($apiValidator->getType() === $name) {
+                return $apiValidator;
             }
         }
 
-        throw new \InvalidArgumentException('Undefined InternalApiValidator: ' . $name);
+        throw new \InvalidArgumentException('Undefined ApiValidator: ' . $name);
     }
 }

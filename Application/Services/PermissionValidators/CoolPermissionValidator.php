@@ -4,19 +4,10 @@ namespace Prescreen\ApiResourceBundle\Application\Services\PermissionValidators;
 
 use Prescreen\ApiResourceBundle\Application\Interfaces\PermissionValidator;
 
-class CoolPermissionValidator implements PermissionValidator
+readonly class CoolPermissionValidator implements PermissionValidator
 {
-    /**
-     * @var bool
-     */
-    private $userIsCool;
-
-    /**
-     * @param bool $userIsCool
-     */
-    public function __construct(bool $userIsCool)
+    public function __construct(private bool $userIsCool)
     {
-        $this->userIsCool = $userIsCool;
     }
 
     public function isPermitted(): bool

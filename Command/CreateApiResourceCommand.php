@@ -12,19 +12,13 @@ class CreateApiResourceCommand extends Command
 {
     use CaseConverter;
 
-    /**
-     * @var CreateApiResourceService
-     */
-    private $createApiResourceService;
-
     public function __construct(
-        CreateApiResourceService $createApiResourceService
+        private readonly CreateApiResourceService $createApiResourceService
     ) {
         parent::__construct();
-        $this->createApiResourceService = $createApiResourceService;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
@@ -34,7 +28,7 @@ class CreateApiResourceCommand extends Command
             ->addArgument('entity-class');
     }
 
-    public function run(InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         $entityClassFile = $input->getArgument('entity-class');
         $entityClass = $this->getClassFromFile($entityClassFile);
@@ -54,81 +48,54 @@ class CreateApiResourceCommand extends Command
         $output->writeln('> Create an API controller and start using your new resource!');
         $output->writeln('> <info>Happy coding!</info>');
 
-        return 1;
+        return Command::SUCCESS;
     }
 
     private function getClassFromFile($path_to_file)
     {
-        //Grab the contents of the file
         $contents = file_get_contents($path_to_file);
 
-        //Start with a blank namespace and class
         $namespace = $class = '';
 
-        //Set helper values to know that we have found the namespace/class token and need to collect the string values after them
-        $getting_namespace = $getting_class = false;
+        $gettingNamespace = $gettingClass = false;
 
-        //Go through each token and evaluate it as necessary
         foreach (token_get_all($contents) as $token) {
-            $getting_namespace = $this->isGettingNamespace($token, $getting_namespace);
-            $getting_class = $this->isGettingClass($token, $getting_class);
+            $gettingNamespace = $this->isGettingNamespace($token, $gettingNamespace);
+            $gettingClass = $this->isGettingClass($token, $gettingClass);
 
-            //While we're grabbing the namespace name...
-            if ($getting_namespace === true) {
-
-                //If the token is a string or the namespace separator...
+            if ($gettingNamespace === true) {
                 if (is_array($token) && in_array($token[0], [T_STRING, T_NS_SEPARATOR])) {
-
-                    //Append the token's value to the name of the namespace
                     $namespace .= $token[1];
                 } elseif ($token === ';') {
-
-                    //If the token is the semicolon, then we're done with the namespace declaration
-                    $getting_namespace = false;
+                    $gettingNamespace = false;
                 }
             }
 
-            //While we're grabbing the class name...
-            if ($getting_class === true && is_array($token) && $token[0] == T_STRING) {
-                //Store the token's value as the class name
+            if ($gettingClass === true && is_array($token) && $token[0] == T_STRING) {
                 $class = $token[1];
 
-                //Got what we need, stope here
                 break;
             }
         }
 
-        //Build the fully-qualified class name and return it
         return $namespace ? $namespace . '\\' . $class : $class;
     }
 
-    /**
-     * @param $token
-     * @param bool $getting_namespace
-     *
-     * @return bool
-     */
-    private function isGettingNamespace($token, bool $getting_namespace): bool
+    private function isGettingNamespace($token, bool $gettingNamespace): bool
     {
-        //If this token is the namespace declaring, then flag that the next tokens will be the namespace name
         if (is_array($token) && $token[0] == T_NAMESPACE) {
-            $getting_namespace = true;
+            $gettingNamespace = true;
         }
-        return $getting_namespace;
+
+        return $gettingNamespace;
     }
 
-    /**
-     * @param $token
-     * @param bool $getting_class
-     *
-     * @return bool
-     */
-    private function isGettingClass($token, bool $getting_class): bool
+    private function isGettingClass($token, bool $gettingClass): bool
     {
-        //If this token is the class declaring, then flag that the next tokens will be the class name
         if (is_array($token) && $token[0] == T_CLASS) {
-            $getting_class = true;
+            $gettingClass = true;
         }
-        return $getting_class;
+
+        return $gettingClass;
     }
 }

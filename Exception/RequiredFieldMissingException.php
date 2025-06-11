@@ -2,6 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Exception;
 
-class RequiredFieldMissingException extends InternalApiValidatorException
+class RequiredFieldMissingException extends ApiValidatorException
 {
 }

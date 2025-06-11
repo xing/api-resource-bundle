@@ -2,6 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Exception;
 
-class LinkedObjectNotFoundException extends InternalApiValidatorException
+class LinkedObjectNotFoundException extends ApiValidatorException
 {
 }

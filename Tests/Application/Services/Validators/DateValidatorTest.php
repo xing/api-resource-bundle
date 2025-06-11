@@ -9,46 +9,31 @@ use PHPUnit\Framework\TestCase;
 
 class DateValidatorTest extends TestCase
 {
-    /**
-     * @var DateValidator
-     */
-    private $testService;
+    private DateValidator $testService;
 
     public function setUp(): void
     {
         $this->testService = new DateValidator();
     }
 
-    /**
-     * @test
-     */
-    public function givenValueCannotBeConvertedToDateTimeThenThrowException()
+    public function testItThrowsExceptionIfValueCannotBeConvertedToDateTime(): void
     {
         $this->expectException(FieldTypeException::class);
 
         $this->testService->validate('date', 'some weird value', new DateField());
     }
 
-    /**
-     * @test
-     */
-    public function givenValueCanBeConvertedToDateTimeThenReturnDateTime()
+    public function testItReturnsDateTimeIfValueCanBeConverted(): void
     {
         $this->assertInstanceOf(\DateTime::class, $this->testService->validate('date', '2020-03-27', new DateField()));
     }
 
-    /**
-     * @test
-     */
-    public function givenFieldIsNotRequiredAndValueIsNullThenReturnNull()
+    public function testItReturnsNullIfValueIsNullAndFieldIsNotRequired()
     {
         $this->assertNull($this->testService->validate('date', null, new DateField(false)));
     }
 
-    /**
-     * @test
-     */
-    public function itIsOfTypeDate()
+    public function testItIsOfTypeDate()
     {
         $this->assertSame(DateField::TYPE, $this->testService->getType());
     }

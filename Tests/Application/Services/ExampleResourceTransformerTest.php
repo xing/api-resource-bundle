@@ -18,18 +18,9 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleResourceTransformerTest extends TestCase
 {
-    /**
-     * @var ApiValidatorRegistry
-     */
-    protected $apiValidatorRegistry;
-    /**
-     * @var object
-     */
-    protected $resource;
-    /**
-     * @var ExampleResourceTransformer
-     */
-    private $testService;
+    protected ApiValidatorRegistry $apiValidatorRegistry;
+    protected object $resource;
+    private ExampleResourceTransformer $testService;
 
     public function setUp(): void
     {
@@ -37,20 +28,14 @@ class ExampleResourceTransformerTest extends TestCase
         $this->testService = new ExampleResourceTransformer($this->apiValidatorRegistry);
     }
 
-    /**
-     * @test
-     */
-    public function givenWrongEntityClassThenThrowException()
+    public function testItThrowsExceptionIfGivenWrongEntityClass()
     {
         $this->expectException(WrongObjectTypeGivenException::class);
 
         $this->testService->fromEntity(new \stdClass());
     }
 
-    /**
-     * @test
-     */
-    public function givenFromEntityIsCalledThenSetResourceFieldsFromEntityAndReturnNewResource()
+    public function testItCreatesNewResourceAndSetsFieldsOnFromEntityMethod(): void
     {
         $resource = $this->testService->fromEntity(
             (new ExampleEntity())
@@ -66,10 +51,7 @@ class ExampleResourceTransformerTest extends TestCase
         $this->assertEmpty($resource->translations);
     }
 
-    /**
-     * @test
-     */
-    public function givenRequiredFieldIsMissingInInputArrayThenThrowException()
+    public function testItThrowsExceptionIfRequiredFieldIsMissingInInputArray(): void
     {
         $this->expectException(RequiredFieldMissingException::class);
 
@@ -79,10 +61,7 @@ class ExampleResourceTransformerTest extends TestCase
         ], new ExampleEntity());
     }
 
-    /**
-     * @test
-     */
-    public function givenPermissionIsMissingForFieldThenThrowException()
+    public function testItThrowsExceptionIfPermissionIsMissingForField(): void
     {
         $this->expectException(PermissionDeniedException::class);
 
@@ -101,10 +80,7 @@ class ExampleResourceTransformerTest extends TestCase
         ], new ExampleEntity());
     }
 
-    /**
-     * @test
-     */
-    public function givenArrayThenSetFieldsInEntity()
+    public function testItSetsFieldsInEntityIfGivenArrayValidates(): void
     {
         $exampleEntity = new ExampleEntity();
 
@@ -128,10 +104,7 @@ class ExampleResourceTransformerTest extends TestCase
         $this->assertFalse($exampleEntity->isCool());
     }
 
-    /**
-     * @test
-     */
-    public function givenResourceCollectionFieldThenUpdateCollectionInEntity()
+    public function testItUpdatesCollectionInEntityIfResourceCollectionFieldGiven(): void
     {
         $exampleEntity = new ExampleEntity();
         $oldTranslation = (new ExampleTranslationEntity())->setId(1);
@@ -166,10 +139,7 @@ class ExampleResourceTransformerTest extends TestCase
         $this->assertTrue($exampleEntity->getTranslations()->contains($newTranslation));
     }
 
-    /**
-     * @test
-     */
-    public function givenCollectionDoesNotExistYetThenUseEntitySetter()
+    public function testItUsesEntitySetterIfCollectionDoesNotExistYet(): void
     {
         $exampleEntity = new ExampleEntity();
 
@@ -201,10 +171,7 @@ class ExampleResourceTransformerTest extends TestCase
         $this->assertTrue($exampleEntity->getTranslations()->contains($newTranslation));
     }
 
-    /**
-     * @test
-     */
-    public function givenFromIterableIsCalledThenCreateResourcesForEveryGivenEntity()
+    public function testItCreatesResourceForAllGivenEntitiesOnFromIterable(): void
     {
         $resources = $this->testService->fromIterable([
             (new ExampleEntity())

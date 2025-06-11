@@ -13,10 +13,7 @@ use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
 
 class ExampleResourceTransformer extends ApiResourceTransformer
 {
-    /**
-     * @var bool
-     */
-    private $userIsCool = true;
+    private bool $userIsCool = true;
 
     public function getEntityClass(): string
     {
@@ -43,11 +40,6 @@ class ExampleResourceTransformer extends ApiResourceTransformer
         ];
     }
 
-    /**
-     * @param bool $userIsCool
-     *
-     * @return ExampleResourceTransformer
-     */
     public function setUserIsCool(bool $userIsCool): ExampleResourceTransformer
     {
         $this->userIsCool = $userIsCool;

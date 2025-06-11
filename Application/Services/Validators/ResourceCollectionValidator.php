@@ -15,21 +15,12 @@ use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 class ResourceCollectionValidator extends ResourceValidator
 {
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
      * @throws FieldTypeException
      * @throws LinkedObjectNotFoundException
      * @throws MissingResourceTransformerException
      * @throws RequiredFieldMissingException
-     * @throws PermissionDeniedException
-     * @throws ValueNotAllowedException
-     *
-     * @return object
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): ?ArrayCollection
     {
         if (null !== $value) {
             if (false === is_array($value)) {
@@ -45,7 +36,7 @@ class ResourceCollectionValidator extends ResourceValidator
             return new ArrayCollection($entities);
         }
 
-        return $value;
+        return null;
     }
 
     public function getType(): string

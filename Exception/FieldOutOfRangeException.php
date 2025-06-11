@@ -2,6 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Exception;
 
-class FieldOutOfRangeException extends InternalApiValidatorException
+class FieldOutOfRangeException extends ApiValidatorException
 {
 }

@@ -15,20 +15,13 @@ use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 class IdCollectionValidator extends IdValidator
 {
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
      * @throws FieldTypeException
      * @throws LinkedObjectNotFoundException
      * @throws RequiredFieldMissingException
      * @throws PermissionDeniedException
      * @throws ValueNotAllowedException
-     *
-     * @return ArrayCollection
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): ?ArrayCollection
     {
         if (!$fieldOptions instanceof IdField) {
             throw new FieldTypeException($fieldName, sprintf(
@@ -52,7 +45,7 @@ class IdCollectionValidator extends IdValidator
             return new ArrayCollection($entities);
         }
 
-        return $value;
+        return null;
     }
 
     public function getType(): string

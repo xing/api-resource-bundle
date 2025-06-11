@@ -4,71 +4,38 @@ namespace Prescreen\ApiResourceBundle\Entity;
 
 class ExampleTranslationEntity
 {
-    /**
-     * @var int
-     */
-    private $id;
-    /**
-     * @var string
-     */
-    private $name;
-    /**
-     * @var string
-     */
-    private $locale;
+    private ?int $id = null;
+    private ?string $name = null;
+    private ?string $locale = null;
 
-    /**
-     * @return int
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     *
-     * @return ExampleTranslationEntity
-     */
-    public function setId(int $id): ExampleTranslationEntity
+    public function setId(int $id): static
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return ExampleTranslationEntity
-     */
-    public function setName(string $name): ExampleTranslationEntity
+    public function setName(string $name): static
     {
         $this->name = $name;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLocale(): ?string
     {
         return $this->locale;
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return ExampleTranslationEntity
-     */
-    public function setLocale(string $locale): ExampleTranslationEntity
+    public function setLocale(string $locale): static
     {
         $this->locale = $locale;
         return $this;

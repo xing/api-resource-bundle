@@ -16,20 +16,13 @@ class FloatValidator extends ApiValidator
     use RangeValidatorTrait;
 
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
-     * @return mixed
-     *
      * @throws FieldTypeException
      * @throws RequiredFieldMissingException
      * @throws PermissionDeniedException
      * @throws ValueNotAllowedException
      * @throws FieldOutOfRangeException
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): float|int|null
     {
         parent::validate($fieldName, $value, $fieldOptions, $oldValue);
 

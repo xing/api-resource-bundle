@@ -16,20 +16,13 @@ class IntValidator extends ApiValidator
     use RangeValidatorTrait;
 
     /**
-     * @param string $fieldName
-     * @param $value
-     * @param FieldOptions $fieldOptions
-     * @param $oldValue
-     *
      * @throws FieldOutOfRangeException
      * @throws FieldTypeException
      * @throws RequiredFieldMissingException
      * @throws PermissionDeniedException
      * @throws ValueNotAllowedException
-     *
-     * @return mixed
      */
-    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null)
+    public function validate(string $fieldName, $value, FieldOptions $fieldOptions, $oldValue = null): ?int
     {
         parent::validate($fieldName, $value, $fieldOptions, $oldValue);
 

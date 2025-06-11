@@ -16,18 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 class ResourceCollectionValidatorTest extends TestCase
 {
-    /**
-     * @var ApiResourceTransformerRegistry
-     */
-    protected $apiResourceTransformerRegistry;
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-    /**
-     * @var ResourceCollectionValidator
-     */
-    private $testService;
+    protected ApiResourceTransformerRegistry $apiResourceTransformerRegistry;
+    protected EntityManagerInterface $em;
+    private ResourceCollectionValidator $testService;
 
     public function setUp(): void
     {
@@ -36,24 +27,18 @@ class ResourceCollectionValidatorTest extends TestCase
         $this->testService = new ResourceCollectionValidator($this->em, $this->apiResourceTransformerRegistry);
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsNotOfTypeArrayThenThrowException()
+    public function testItThrowsExceptionIfValueIsNotOfTypeArray(): void
     {
         $this->expectException(FieldTypeException::class);
 
         $this->testService->validate('resource_collection_field', 1, new ResourceCollectionField(ExampleResource::class));
     }
 
-    /**
-     * @test
-     */
-    public function givenValueIsArrayOfResourcesThenReturnArrayCollectionWithEntities()
+    public function testItReturnsArrayCollectionOfEntitiesIfValueIsArrayOfResources(): void
     {
         $repository = $this->expectRepositoryToBeFound();
 
-        $repository->expects($this->exactly(2))->method('find')->willReturnOnConsecutiveCalls(
+        $repository->expects($this->exactly(2))->method('findOneBy')->willReturnOnConsecutiveCalls(
             new ExampleEntity(), new ExampleEntity()
         );
 
@@ -63,17 +48,11 @@ class ResourceCollectionValidatorTest extends TestCase
         $this->assertCount(2, $returnedCollection);
     }
 
-    /**
-     * @test
-     */
-    public function itIsOfTypeResourceCollection()
+    public function testItIsOfTypeResourceCollection(): void
     {
         $this->assertEquals(ResourceCollectionField::TYPE, $this->testService->getType());
     }
 
-    /**
-     * @return MockObject
-     */
     private function expectRepositoryToBeFound(): MockObject
     {
         $repository = $this->createMock(EntityRepository::class);

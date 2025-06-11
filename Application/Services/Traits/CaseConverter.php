@@ -4,23 +4,11 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Traits;
 
 trait CaseConverter
 {
-    /**
-     * @param string $input
-     *
-     * @return string
-     */
     protected function toCamelCase(string $input): string
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', str_replace('_', ' ', $input))));
     }
 
-    /**
-     * @param string $input
-     *
-     * @return string
-     *
-     * @codeCoverageIgnore
-     */
     protected function toSnakeCase(string $input): string
     {
         preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
