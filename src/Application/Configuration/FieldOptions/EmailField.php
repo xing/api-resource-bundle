@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions;
+namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
 class EmailField extends FieldOptions
 {

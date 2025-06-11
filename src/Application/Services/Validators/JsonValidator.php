@@ -1,13 +1,13 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\JsonField;
-use Prescreen\ApiResourceBundle\src\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\src\Exception\PermissionDeniedException;
-use Prescreen\ApiResourceBundle\src\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\src\Exception\ValueNotAllowedException;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
+use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
+use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class JsonValidator extends ApiValidator
 {

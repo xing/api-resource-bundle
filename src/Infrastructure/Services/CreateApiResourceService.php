@@ -1,9 +1,9 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Infrastructure\Services;
+namespace Prescreen\ApiResourceBundle\Infrastructure\Services;
 
-use Prescreen\ApiResourceBundle\src\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\src\Infrastructure\ExtendedReflectionClass;
+use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
+use Prescreen\ApiResourceBundle\Infrastructure\ExtendedReflectionClass;
 
 class CreateApiResourceService
 {
@@ -35,7 +35,7 @@ class CreateApiResourceService
         
 namespace $resourceClassNamespace;
         
-use Prescreen\ApiResourceBundle\src\Application\Interfaces\ApiResource;
+use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
 $useStatements
         
 class $className implements ApiResource

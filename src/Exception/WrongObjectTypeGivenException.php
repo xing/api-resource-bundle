@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Exception;
+namespace Prescreen\ApiResourceBundle\Exception;
 
 class WrongObjectTypeGivenException extends \Exception
 {

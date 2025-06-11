@@ -1,15 +1,15 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Services;
+namespace Prescreen\ApiResourceBundle\Application\Services;
 
 use Doctrine\Common\Collections\Collection;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\ResourceCollectionField;
-use Prescreen\ApiResourceBundle\src\Application\Interfaces\ApiResource;
-use Prescreen\ApiResourceBundle\src\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\src\Application\Services\Validators\ApiValidatorRegistry;
-use Prescreen\ApiResourceBundle\src\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\src\Exception\WrongObjectTypeGivenException;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
+use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
+use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
+use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 
 abstract class ApiResourceTransformer
 {

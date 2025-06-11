@@ -1,14 +1,14 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\src\Application\Configuration\FieldOptions\ResourceCollectionField;
-use Prescreen\ApiResourceBundle\src\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\src\Exception\LinkedObjectNotFoundException;
-use Prescreen\ApiResourceBundle\src\Exception\MissingResourceTransformerException;
-use Prescreen\ApiResourceBundle\src\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
+use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
+use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 
 class ResourceCollectionValidator extends ResourceValidator
 {

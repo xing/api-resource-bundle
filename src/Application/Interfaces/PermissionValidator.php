@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\src\Application\Interfaces;
+namespace Prescreen\ApiResourceBundle\Application\Interfaces;
 
 interface PermissionValidator
 {
