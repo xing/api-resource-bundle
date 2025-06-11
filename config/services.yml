@@ -11,14 +11,14 @@ services:
         resource: '../src/Infrastructure/Services/*'
 
     # Validators
-    Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
-        arguments:
-            $apiValidators: !tagged_iterator api_resource.validator
-
     Prescreen\ApiResourceBundle\Application\Services\Validators\:
         resource: '../src/Application/Services/Validators/*'
         tags:
             - { name: api_resource.validator }
+
+    Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
+        arguments:
+            - !tagged_iterator api_resource.validator
 
     # Transformers
     Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry:
