@@ -3,6 +3,7 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\DateField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\DateValidator;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
@@ -35,6 +36,6 @@ class DateValidatorTest extends TestCase
 
     public function testItIsOfTypeDate()
     {
-        $this->assertSame(DateField::TYPE, $this->testService->getType());
+        $this->assertSame(FieldType::DATE, $this->testService->getType());
     }
 }

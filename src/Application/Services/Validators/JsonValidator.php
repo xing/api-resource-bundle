@@ -4,6 +4,7 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
@@ -37,8 +38,8 @@ class JsonValidator extends ApiValidator
         return (json_validate($value));
     }
 
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return JsonField::TYPE;
+        return FieldType::JSON;
     }
 }

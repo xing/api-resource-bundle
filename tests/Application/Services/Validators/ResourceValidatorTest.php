@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ResourceValidator;
@@ -125,7 +126,7 @@ class ResourceValidatorTest extends TestCase
 
     public function testItIsOfTypeResource(): void
     {
-        $this->assertEquals(ResourceField::TYPE, $this->testService->getType());
+        $this->assertEquals(FieldType::RESOURCE, $this->testService->getType());
     }
 
     private function expectResourceTransformerToBeReturned(): ApiResourceTransformer&MockObject

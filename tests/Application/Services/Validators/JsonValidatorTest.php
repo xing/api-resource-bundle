@@ -4,6 +4,7 @@ namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use PHPUnit\Framework\TestCase;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\JsonValidator;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 
@@ -40,6 +41,6 @@ class JsonValidatorTest extends TestCase
 
     public function testItIsOfTypeString(): void
     {
-        $this->assertSame(JsonField::TYPE, $this->testService->getType());
+        $this->assertSame(FieldType::JSON, $this->testService->getType());
     }
 }

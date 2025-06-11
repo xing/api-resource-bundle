@@ -5,6 +5,7 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 use Doctrine\ORM\EntityManagerInterface;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
@@ -79,8 +80,8 @@ class ResourceValidator extends EntityValidator
         return null;
     }
 
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return ResourceField::TYPE;
+        return FieldType::RESOURCE;
     }
 }

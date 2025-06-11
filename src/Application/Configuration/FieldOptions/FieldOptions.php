@@ -2,27 +2,23 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Interfaces\PermissionValidator;
 
-class FieldOptions
+abstract class FieldOptions
 {
-    protected bool $required = false;
-    protected string $type;
     protected ?string $entitySetter = null;
     protected ?string $entityGetter = null;
-    protected mixed $default = null;
     protected ?array $allowedValues = null;
     protected ?string $regex = null;
     protected ?PermissionValidator $permissionValidator = null;
 
+    abstract public function getType(): FieldType;
+
     public function __construct(
-        string $type,
-        bool $required = false,
-        mixed $default = null,
+        protected bool $required = false,
+        protected mixed $default = null,
     ) {
-        $this->required = $required;
-        $this->type = $type;
-        $this->default = $default;
     }
 
     public function isRequired(): bool
@@ -30,10 +26,6 @@ class FieldOptions
         return $this->required;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
 
     public function getEntitySetter(): ?string
     {

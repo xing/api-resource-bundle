@@ -3,6 +3,7 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\StringValidator;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
@@ -35,6 +36,6 @@ class StringValidatorTest extends TestCase
 
     public function testItIsOfTypeString(): void
     {
-        $this->assertSame(StringField::TYPE, $this->testService->getType());
+        $this->assertSame(FieldType::STRING, $this->testService->getType());
     }
 }

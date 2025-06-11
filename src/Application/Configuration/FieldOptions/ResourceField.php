@@ -2,17 +2,16 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+
 class ResourceField extends FieldOptions
 {
-    const TYPE = 'resource';
-
     public function __construct(
         protected readonly string $resourceClass,
         protected readonly bool $createIfNotExists = false,
         bool $required = false,
-        string $type = self::TYPE,
     ) {
-        parent::__construct($type, $required);
+        parent::__construct($required);
     }
 
     public function getResourceClass(): string
@@ -23,5 +22,10 @@ class ResourceField extends FieldOptions
     public function isCreateIfNotExists(): bool
     {
         return $this->createIfNotExists;
+    }
+
+    public function getType(): FieldType
+    {
+        return FieldType::RESOURCE;
     }
 }

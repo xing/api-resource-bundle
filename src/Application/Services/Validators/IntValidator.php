@@ -3,7 +3,7 @@
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Traits\RangeValidatorTrait;
 use Prescreen\ApiResourceBundle\Exception\FieldOutOfRangeException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
@@ -39,8 +39,8 @@ class IntValidator extends ApiValidator
         return $value;
     }
 
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return IntField::TYPE;
+        return FieldType::INT;
     }
 }

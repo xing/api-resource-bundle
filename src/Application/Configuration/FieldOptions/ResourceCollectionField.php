@@ -2,10 +2,10 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+
 class ResourceCollectionField extends ResourceField
 {
-    const string TYPE = 'resource_collection';
-
     public function __construct(
         string $resourceClass,
         bool $createIfNotExists = false,
@@ -13,7 +13,7 @@ class ResourceCollectionField extends ResourceField
         protected readonly ?string $entityAdder = null,
         protected readonly ?string $entityRemover = null,
     ) {
-        parent::__construct($resourceClass, $createIfNotExists, $required, self::TYPE);
+        parent::__construct($resourceClass, $createIfNotExists, $required);
     }
 
     public function getEntityAdder(): ?string
@@ -24,5 +24,10 @@ class ResourceCollectionField extends ResourceField
     public function getEntityRemover(): ?string
     {
         return $this->entityRemover;
+    }
+
+    public function getType(): FieldType
+    {
+        return FieldType::RESOURCE_COLLECTION;
     }
 }

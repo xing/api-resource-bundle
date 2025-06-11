@@ -3,6 +3,7 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\IntValidator;
 use Prescreen\ApiResourceBundle\Exception\FieldOutOfRangeException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
@@ -43,6 +44,6 @@ class IntValidatorTest extends TestCase
 
     public function testItIsOfTypeInt(): void
     {
-        $this->assertSame(IntField::TYPE, $this->testService->getType());
+        $this->assertSame(FieldType::INT, $this->testService->getType());
     }
 }

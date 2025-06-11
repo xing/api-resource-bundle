@@ -2,12 +2,12 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\UrlField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 
 class UrlValidator extends StringValidator
 {
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return UrlField::TYPE;
+        return FieldType::URL;
     }
 }

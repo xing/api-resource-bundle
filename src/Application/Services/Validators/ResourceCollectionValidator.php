@@ -4,7 +4,7 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
@@ -37,8 +37,8 @@ class ResourceCollectionValidator extends ResourceValidator
         return null;
     }
 
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return ResourceCollectionField::TYPE;
+        return FieldType::RESOURCE_COLLECTION;
     }
 }

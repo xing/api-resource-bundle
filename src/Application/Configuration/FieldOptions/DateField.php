@@ -2,12 +2,17 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+
 class DateField extends FieldOptions
 {
-    const string TYPE = 'date';
-
     public function __construct(bool $required = false)
     {
-        parent::__construct(self::TYPE, $required);
+        parent::__construct($required);
+    }
+
+    public function getType(): FieldType
+    {
+        return FieldType::DATE;
     }
 }

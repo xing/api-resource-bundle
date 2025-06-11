@@ -4,6 +4,7 @@ namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
@@ -44,8 +45,8 @@ class IdValidator extends EntityValidator
         return null;
     }
 
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return IdField::TYPE;
+        return FieldType::ID;
     }
 }

@@ -2,16 +2,20 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+
 class FloatField extends IntField
 {
-    const string TYPE = 'float';
-
     public function __construct(
         int $min = null,
         int $max = null,
         bool $required = false,
     ) {
         parent::__construct($min, $max, $required);
-        $this->type = self::TYPE;
+    }
+
+    public function getType(): FieldType
+    {
+        return FieldType::FLOAT;
     }
 }

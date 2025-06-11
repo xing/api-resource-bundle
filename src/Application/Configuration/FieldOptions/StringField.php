@@ -2,16 +2,21 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+
 class StringField extends FieldOptions
 {
-    const string TYPE = 'string';
-
     public function __construct(
         bool $required = false,
         ?string $regex = null,
     ) {
-        parent::__construct(self::TYPE, $required);
+        parent::__construct($required);
 
         $this->regex = $regex;
+    }
+
+    public function getType(): FieldType
+    {
+        return FieldType::STRING;
     }
 }

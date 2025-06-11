@@ -2,6 +2,7 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
 use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -59,7 +60,7 @@ class IdValidatorTest extends TestCase
 
     public function testItIsOfTypeId(): void
     {
-        $this->assertSame(IdField::TYPE, $this->testService->getType());
+        $this->assertSame(FieldType::ID, $this->testService->getType());
     }
 
     /**

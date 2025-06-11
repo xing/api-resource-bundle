@@ -2,8 +2,8 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
@@ -28,8 +28,8 @@ class BoolValidator extends ApiValidator
         return $value;
     }
 
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return BoolField::TYPE;
+        return FieldType::BOOL;
     }
 }

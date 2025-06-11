@@ -2,16 +2,16 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+
 class IntField extends FieldOptions
 {
-    const string TYPE = 'int';
-
     public function __construct(
         protected readonly ?int $min = null,
         protected readonly ?int $max = null,
         bool $required = false,
     ) {
-        parent::__construct(IntField::TYPE, $required);
+        parent::__construct($required);
     }
 
     public function getMin(): ?int
@@ -22,5 +22,10 @@ class IntField extends FieldOptions
     public function getMax(): ?int
     {
         return $this->max;
+    }
+
+    public function getType(): FieldType
+    {
+        return FieldType::INT;
     }
 }

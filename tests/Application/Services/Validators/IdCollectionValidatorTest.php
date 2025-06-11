@@ -2,6 +2,7 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
 use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -58,7 +59,7 @@ class IdCollectionValidatorTest extends TestCase
 
     public function testItIsOfTypeIdCollection(): void
     {
-        $this->assertSame(IdCollectionField::TYPE, $this->testService->getType());
+        $this->assertSame(FieldType::ID_COLLECTION, $this->testService->getType());
     }
 
     private function expectRepositoryToBeFound(): MockObject

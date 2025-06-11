@@ -2,12 +2,12 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\EmailField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 
 class EmailValidator extends StringValidator
 {
-    public function getType(): string
+    public function getType(): FieldType
     {
-        return EmailField::TYPE;
+        return FieldType::EMAIL;
     }
 }

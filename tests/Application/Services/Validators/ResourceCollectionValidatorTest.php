@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ResourceCollectionValidator;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
@@ -50,7 +51,7 @@ class ResourceCollectionValidatorTest extends TestCase
 
     public function testItIsOfTypeResourceCollection(): void
     {
-        $this->assertEquals(ResourceCollectionField::TYPE, $this->testService->getType());
+        $this->assertEquals(FieldType::RESOURCE_COLLECTION, $this->testService->getType());
     }
 
     private function expectRepositoryToBeFound(): MockObject
