@@ -5,10 +5,10 @@ services:
         public: true
 
     Prescreen\ApiResourceBundle\Command\:
-        resource: '../../Command/*'
+        resource: '../src/Command/*'
 
     Prescreen\ApiResourceBundle\Infrastructure\Services\:
-        resource: '../../Infrastructure/Services/*'
+        resource: '../src/Infrastructure/Services/*'
 
     # Validators
     Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
@@ -16,7 +16,7 @@ services:
             - !tagged api_resource.validator
 
     Prescreen\ApiResourceBundle\Application\Services\Validators\:
-        resource: '../../Application/Services/Validators/*'
+        resource: '../src/Application/Services/Validators/*'
         tags:
             - { name: api_resource.validator }
 
