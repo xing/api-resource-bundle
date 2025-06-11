@@ -14,12 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Prescreen\\ApiResourceBundle\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Prescreen\\ApiResourceBundle\\Tests\\": "tests/"
+            "Prescreen\\ApiResourceBundle\\": ""
         }
     },
     "require": {
