@@ -24,7 +24,7 @@ class IdField extends FieldOptions
         return $this->idFieldName;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::ID;
     }

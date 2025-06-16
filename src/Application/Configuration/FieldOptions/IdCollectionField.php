@@ -14,7 +14,7 @@ class IdCollectionField extends IdField
         parent::__construct($entityClass, $required, $idFieldName);
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::ID_COLLECTION;
     }

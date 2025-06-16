@@ -8,9 +8,9 @@ class FieldType
     const string DATE = 'date_field';
     const string EMAIL = 'email_field';
     const string FLOAT = 'float_field';
-    const string GENERIC = 'generic_field';
     const string ID_COLLECTION = 'id_collection_field';
     const string ID = 'id_field';
+    const string HTML = 'html_field';
     const string INT = 'int_field';
     const string JSON = 'json_field';
     const string RESOURCE = 'resource_field';

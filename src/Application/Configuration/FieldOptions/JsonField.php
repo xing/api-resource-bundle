@@ -11,7 +11,7 @@ class JsonField extends FieldOptions
         parent::__construct($required);
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::JSON;
     }

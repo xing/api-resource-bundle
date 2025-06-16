@@ -26,7 +26,7 @@ class ResourceCollectionField extends ResourceField
         return $this->entityRemover;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::RESOURCE_COLLECTION;
     }

@@ -2,7 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Interfaces\PermissionValidator;
 
 abstract class FieldOptions
@@ -13,7 +12,7 @@ abstract class FieldOptions
     protected ?string $regex = null;
     protected ?PermissionValidator $permissionValidator = null;
 
-    abstract public function getType(): FieldType;
+    abstract public function getType(): string;
 
     public function __construct(
         protected bool $required = false,

@@ -24,7 +24,7 @@ class IntField extends FieldOptions
         return $this->max;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::INT;
     }

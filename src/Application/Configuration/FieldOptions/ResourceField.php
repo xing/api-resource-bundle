@@ -24,7 +24,7 @@ class ResourceField extends FieldOptions
         return $this->createIfNotExists;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::RESOURCE;
     }

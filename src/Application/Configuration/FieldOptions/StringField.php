@@ -15,7 +15,7 @@ class StringField extends FieldOptions
         $this->regex = $regex;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::STRING;
     }

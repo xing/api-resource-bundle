@@ -11,7 +11,7 @@ class BoolField extends FieldOptions
         parent::__construct($required, $default);
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::BOOL;
     }

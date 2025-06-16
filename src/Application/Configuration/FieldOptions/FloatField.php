@@ -14,7 +14,7 @@ class FloatField extends IntField
         parent::__construct($min, $max, $required);
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::FLOAT;
     }
