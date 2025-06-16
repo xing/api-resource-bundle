@@ -13,6 +13,7 @@ class ResourceField extends FieldOptions
         protected readonly bool $persist = true,
         protected readonly string $uniqueIdentifierField = 'id',
         protected readonly bool $allowNullIfIdentifierIsPresent = false,
+        protected readonly bool $removeOldValueOnNull = false,
     ) {
         parent::__construct($required);
     }
@@ -45,5 +46,10 @@ class ResourceField extends FieldOptions
     public function isAllowNullIfIdentifierIsPresent(): bool
     {
         return $this->allowNullIfIdentifierIsPresent;
+    }
+
+    public function isRemoveOldValueOnNull(): bool
+    {
+        return $this->removeOldValueOnNull;
     }
 }
