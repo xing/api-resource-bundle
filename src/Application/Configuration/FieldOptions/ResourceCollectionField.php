@@ -15,6 +15,7 @@ class ResourceCollectionField extends ResourceField
         bool $persist = true,
         string $uniqueIdentifierField = 'id',
         bool $allowNullIfIdentifierIsPresent = false,
+        bool $removeOldValueOnNull = false,
     ) {
         parent::__construct(
             $resourceClass,
@@ -23,6 +24,7 @@ class ResourceCollectionField extends ResourceField
             $persist,
             $uniqueIdentifierField,
             $allowNullIfIdentifierIsPresent,
+            $removeOldValueOnNull,
         );
     }
 

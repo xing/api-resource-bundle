@@ -2,17 +2,26 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+use Prescreen\ApiResourceBundle\Application\Services\Traits\EntityValidatorTrait;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
-class IdValidator extends EntityValidator
+class IdValidator extends ApiValidator
 {
+    use EntityValidatorTrait;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @throws FieldTypeException
      * @throws LinkedObjectNotFoundException

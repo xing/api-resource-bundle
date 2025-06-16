@@ -166,6 +166,26 @@ class ResourceValidatorTest extends TestCase
         );
     }
 
+    public function testItRemovesOldValueIfSetInFieldOptions(): void
+    {
+        $this->expectResourceTransformerToBeReturned();
+        $this->expectRepositoryToBeFound();
+
+        $oldValue = new ExampleEntity();
+
+        $this->em->expects($this->never())->method('persist');
+        $this->em->expects($this->once())->method('remove')->with($oldValue);
+
+        $this->testService->validate(
+            'resource_field',
+            null,
+            $this->createResourceField(
+                removeOldValueOnNull: true
+            ),
+            $oldValue,
+        );
+    }
+
     public function testItIsOfTypeResource(): void
     {
         $this->assertEquals(FieldType::RESOURCE, $this->testService->getType());
@@ -185,6 +205,7 @@ class ResourceValidatorTest extends TestCase
         bool $required = false,
         bool $persist = true,
         bool $allowNullIfIdentifierIsPresent = false,
+        bool $removeOldValueOnNull = false,
     ): ResourceField {
         return new ResourceField(
             ExampleResource::class,
@@ -192,6 +213,7 @@ class ResourceValidatorTest extends TestCase
             $required,
             persist: $persist,
             allowNullIfIdentifierIsPresent: $allowNullIfIdentifierIsPresent,
+            removeOldValueOnNull: $removeOldValueOnNull,
         );
     }
 
