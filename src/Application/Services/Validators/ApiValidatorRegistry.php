@@ -2,8 +2,6 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-
 class ApiValidatorRegistry
 {
     /**
@@ -13,7 +11,7 @@ class ApiValidatorRegistry
     {
     }
 
-    public function get(FieldType $type): ApiValidatorInterface
+    public function get(string $type): ApiValidatorInterface
     {
         foreach ($this->apiValidators as $apiValidator) {
             if ($apiValidator->getType() === $type) {
@@ -21,6 +19,6 @@ class ApiValidatorRegistry
             }
         }
 
-        throw new \InvalidArgumentException('Undefined ApiValidator: ' . $type->value);
+        throw new \InvalidArgumentException('Undefined ApiValidator: ' . $type);
     }
 }

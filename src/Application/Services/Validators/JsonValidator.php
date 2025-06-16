@@ -38,7 +38,7 @@ class JsonValidator extends ApiValidator
         return (json_validate($value));
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::JSON;
     }

@@ -48,7 +48,7 @@ class IdCollectionValidator extends IdValidator
         return null;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::ID_COLLECTION;
     }

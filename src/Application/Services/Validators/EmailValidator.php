@@ -6,7 +6,7 @@ use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 
 class EmailValidator extends StringValidator
 {
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::EMAIL;
     }

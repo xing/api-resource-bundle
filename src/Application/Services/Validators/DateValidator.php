@@ -34,7 +34,7 @@ class DateValidator extends ApiValidator
         return $value;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::DATE;
     }

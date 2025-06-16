@@ -80,7 +80,7 @@ class ResourceValidator extends EntityValidator
         return null;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::RESOURCE;
     }

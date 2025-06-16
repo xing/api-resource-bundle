@@ -37,7 +37,7 @@ class ResourceCollectionValidator extends ResourceValidator
         return null;
     }
 
-    public function getType(): FieldType
+    public function getType(): string
     {
         return FieldType::RESOURCE_COLLECTION;
     }

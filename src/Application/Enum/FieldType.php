@@ -2,19 +2,19 @@
 
 namespace Prescreen\ApiResourceBundle\Application\Enum;
 
-enum FieldType: string
+class FieldType
 {
-    case BOOL = 'bool_field';
-    case DATE = 'date_field';
-    case EMAIL = 'email_field';
-    case FLOAT = 'float_field';
-    case GENERIC = 'generic_field';
-    case ID_COLLECTION = 'id_collection_field';
-    case ID = 'id_field';
-    case INT = 'int_field';
-    case JSON = 'json_field';
-    case RESOURCE = 'resource_field';
-    case RESOURCE_COLLECTION = 'resource_collection_field';
-    case STRING = 'string_field';
-    case URL = 'url_field';
+    const string BOOL = 'bool_field';
+    const string DATE = 'date_field';
+    const string EMAIL = 'email_field';
+    const string FLOAT = 'float_field';
+    const string GENERIC = 'generic_field';
+    const string ID_COLLECTION = 'id_collection_field';
+    const string ID = 'id_field';
+    const string INT = 'int_field';
+    const string JSON = 'json_field';
+    const string RESOURCE = 'resource_field';
+    const string RESOURCE_COLLECTION = 'resource_collection_field';
+    const string STRING = 'string_field';
+    const string URL = 'url_field';
 }
