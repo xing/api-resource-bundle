@@ -124,6 +124,48 @@ class ResourceValidatorTest extends TestCase
         $this->assertNull($this->testService->validate('resource_field', null, $this->createResourceField(false, false)));
     }
 
+    public function testItCreatesNewEntityIfIdentifierFieldIsGivenButEntityCouldNotBeFound(): void
+    {
+        $resourceTransformer = $this->expectResourceTransformerToBeReturned();
+        $resourceTransformer->method('getEntityClass')->willReturn(ExampleEntity::class);
+
+        $this->expectRepositoryToBeFound();
+
+        $this->em->expects($this->once())->method('persist')->with($this->callback(function (ExampleEntity $entity) {
+            return true;
+        }));
+
+        $this->testService->validate(
+            'resource_field',
+            ['id' => 1],
+            $this->createResourceField(
+                createIfNotExists: true,
+                required: true,
+                allowNullIfIdentifierIsPresent: true,
+            ),
+        );
+    }
+
+    public function testItDoesNotPersistIfNotSetInFieldOptions(): void
+    {
+        $resourceTransformer = $this->expectResourceTransformerToBeReturned();
+        $resourceTransformer->method('getEntityClass')->willReturn(ExampleEntity::class);
+
+        $this->expectRepositoryToBeFound();
+
+        $this->em->expects($this->never())->method('persist');
+
+        $this->testService->validate(
+            'resource_field',
+            ['whatever' => 'value'],
+            $this->createResourceField(
+                createIfNotExists: true,
+                required: true,
+                persist: false,
+            ),
+        );
+    }
+
     public function testItIsOfTypeResource(): void
     {
         $this->assertEquals(FieldType::RESOURCE, $this->testService->getType());
@@ -138,9 +180,19 @@ class ResourceValidatorTest extends TestCase
         return $resourceTransformer;
     }
 
-    private function createResourceField(bool $createIfNotExists = false, bool $required = false): ResourceField
-    {
-        return new ResourceField(ExampleResource::class, $createIfNotExists, $required);
+    private function createResourceField(
+        bool $createIfNotExists = false,
+        bool $required = false,
+        bool $persist = true,
+        bool $allowNullIfIdentifierIsPresent = false,
+    ): ResourceField {
+        return new ResourceField(
+            ExampleResource::class,
+            $createIfNotExists,
+            $required,
+            persist: $persist,
+            allowNullIfIdentifierIsPresent: $allowNullIfIdentifierIsPresent,
+        );
     }
 
     private function expectRepositoryToBeFound(): MockObject

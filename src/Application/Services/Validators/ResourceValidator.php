@@ -57,17 +57,31 @@ class ResourceValidator extends EntityValidator
             }
 
             $entity = null;
+            $entityClass = $resourceTransformer->getEntityClass();
 
-            if (isset($value['id'])) {
-                $entity = $this->getEntity($value['id'], $fieldName, $fieldOptions, $resourceTransformer->getEntityClass());
+            if (isset($value[$fieldOptions->getUniqueIdentifierField()])) {
+                $entity = $this->getEntity(
+                    $value[$fieldOptions->getUniqueIdentifierField()],
+                    $fieldName,
+                    $fieldOptions,
+                    $resourceTransformer->getEntityClass(),
+                    $fieldOptions->getUniqueIdentifierField(),
+                    $fieldOptions->isAllowNullIfIdentifierIsPresent(),
+                );
+
+                if (null === $entity && true === $fieldOptions->isCreateIfNotExists()) {
+                    $entity = new $entityClass();
+                }
             } elseif (true === $fieldOptions->isCreateIfNotExists()) {
-                $entityClass = $resourceTransformer->getEntityClass();
                 $entity = new $entityClass;
-                $this->em->persist($entity);
             }
 
             if (null !== $entity) {
                 $resourceTransformer->fromArray($value, $entity);
+
+                if (true === $fieldOptions->isPersist()) {
+                    $this->em->persist($entity);
+                }
 
                 return $entity;
             } elseif (true === $fieldOptions->isRequired()) {

@@ -10,6 +10,9 @@ class ResourceField extends FieldOptions
         protected readonly string $resourceClass,
         protected readonly bool $createIfNotExists = false,
         bool $required = false,
+        protected readonly bool $persist = true,
+        protected readonly string $uniqueIdentifierField = 'id',
+        protected readonly bool $allowNullIfIdentifierIsPresent = false,
     ) {
         parent::__construct($required);
     }
@@ -27,5 +30,20 @@ class ResourceField extends FieldOptions
     public function getType(): string
     {
         return FieldType::RESOURCE;
+    }
+
+    public function isPersist(): bool
+    {
+        return $this->persist;
+    }
+
+    public function getUniqueIdentifierField(): string
+    {
+        return $this->uniqueIdentifierField;
+    }
+
+    public function isAllowNullIfIdentifierIsPresent(): bool
+    {
+        return $this->allowNullIfIdentifierIsPresent;
     }
 }

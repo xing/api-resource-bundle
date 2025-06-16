@@ -12,8 +12,18 @@ class ResourceCollectionField extends ResourceField
         bool $required = false,
         protected readonly ?string $entityAdder = null,
         protected readonly ?string $entityRemover = null,
+        bool $persist = true,
+        string $uniqueIdentifierField = 'id',
+        bool $allowNullIfIdentifierIsPresent = false,
     ) {
-        parent::__construct($resourceClass, $createIfNotExists, $required);
+        parent::__construct(
+            $resourceClass,
+            $createIfNotExists,
+            $required,
+            $persist,
+            $uniqueIdentifierField,
+            $allowNullIfIdentifierIsPresent,
+        );
     }
 
     public function getEntityAdder(): ?string
