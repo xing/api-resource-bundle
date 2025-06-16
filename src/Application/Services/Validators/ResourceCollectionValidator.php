@@ -8,7 +8,9 @@ use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
+use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class ResourceCollectionValidator extends ResourceValidator
 {
@@ -17,6 +19,8 @@ class ResourceCollectionValidator extends ResourceValidator
      * @throws LinkedObjectNotFoundException
      * @throws MissingResourceTransformerException
      * @throws RequiredFieldMissingException
+     * @throws PermissionDeniedException
+     * @throws ValueNotAllowedException
      */
     public function validate(string $fieldName, mixed $value, FieldOptions $fieldOptions, mixed $oldValue = null): ?ArrayCollection
     {
