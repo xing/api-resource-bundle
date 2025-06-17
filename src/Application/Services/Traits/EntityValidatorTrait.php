@@ -1,36 +1,46 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Prescreen\ApiResourceBundle\Application\Services\Traits;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 
-abstract class EntityValidator extends ApiValidator
+trait EntityValidatorTrait
 {
     protected EntityRepository $repository;
-
-    public function __construct(protected readonly EntityManagerInterface $em)
-    {
-    }
+    protected EntityManagerInterface $em;
 
     /**
      * @throws LinkedObjectNotFoundException
      */
-    protected function getEntity(int $id, string $fieldName, FieldOptions $fieldOptions, string $entityClass = null, string $idFieldName = 'id'): object
-    {
-        $entity = $this->repository->findOneBy([
-            $idFieldName => $id
-        ]);
+    protected function getEntity(
+        int $id,
+        string $fieldName,
+        FieldOptions $fieldOptions,
+        string $entityClass = null,
+        string $idFieldName = 'id',
+        bool $allowNull = false,
+    ): ?object {
+        $entity = $this->fetchEntity($idFieldName, $id, $fieldOptions);
 
         if (null === $entityClass && method_exists($fieldOptions, 'getEntityClass')) {
             $entityClass = $fieldOptions->getEntityClass();
         }
 
-        $this->checkIfEntityNotNull($entity, $fieldName, $id, $entityClass);
+        if (false === $allowNull) {
+            $this->checkIfEntityNotNull($entity, $fieldName, $id, $entityClass);
+        }
 
         return $entity;
+    }
+
+    protected function fetchEntity(string $idFieldName, int $id, FieldOptions $fieldOptions): ?object
+    {
+        return $this->repository->findOneBy([
+            $idFieldName => $id
+        ]);
     }
 
     /**

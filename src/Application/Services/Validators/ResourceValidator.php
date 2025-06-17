@@ -6,7 +6,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
+use Prescreen\ApiResourceBundle\Application\Services\Traits\EntityValidatorTrait;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
@@ -14,13 +16,15 @@ use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
 
-class ResourceValidator extends EntityValidator
+class ResourceValidator extends ApiValidator
 {
+    use EntityValidatorTrait;
+
     public function __construct(
         EntityManagerInterface $em,
         protected readonly ApiResourceTransformerRegistry $apiResourceTransformerRegistry
     ) {
-        parent::__construct($em);
+        $this->em = $em;
     }
 
     /**
@@ -41,11 +45,7 @@ class ResourceValidator extends EntityValidator
             ));
         }
 
-        try {
-            $resourceTransformer = $this->apiResourceTransformerRegistry->get($fieldOptions->getResourceClass());
-        } catch (\InvalidArgumentException) {
-            throw new MissingResourceTransformerException($fieldName, sprintf('No resource transformer has been registered for the resource %s.', $fieldOptions->getResourceClass()));
-        }
+        $resourceTransformer = $this->getResourceTransformer($fieldOptions->getResourceClass(), $fieldName, $fieldOptions);
 
         $this->repository = $this->em->getRepository($resourceTransformer->getEntityClass());
 
@@ -57,17 +57,31 @@ class ResourceValidator extends EntityValidator
             }
 
             $entity = null;
+            $entityClass = $resourceTransformer->getEntityClass();
 
-            if (isset($value['id'])) {
-                $entity = $this->getEntity($value['id'], $fieldName, $fieldOptions, $resourceTransformer->getEntityClass());
+            if (isset($value[$fieldOptions->getUniqueIdentifierField()])) {
+                $entity = $this->getEntity(
+                    $value[$fieldOptions->getUniqueIdentifierField()],
+                    $fieldName,
+                    $fieldOptions,
+                    $resourceTransformer->getEntityClass(),
+                    $fieldOptions->getUniqueIdentifierField(),
+                    $fieldOptions->isAllowNullIfIdentifierIsPresent(),
+                );
+
+                if (null === $entity && true === $fieldOptions->isCreateIfNotExists()) {
+                    $entity = new $entityClass();
+                }
             } elseif (true === $fieldOptions->isCreateIfNotExists()) {
-                $entityClass = $resourceTransformer->getEntityClass();
                 $entity = new $entityClass;
-                $this->em->persist($entity);
             }
 
             if (null !== $entity) {
-                $resourceTransformer->fromArray($value, $entity);
+                $this->fillEntity($resourceTransformer, $value, $entity, $fieldOptions);
+
+                if (true === $fieldOptions->isPersist()) {
+                    $this->em->persist($entity);
+                }
 
                 return $entity;
             } elseif (true === $fieldOptions->isRequired()) {
@@ -75,6 +89,8 @@ class ResourceValidator extends EntityValidator
             }
 
             return null;
+        } elseif (null !== $oldValue && true === $fieldOptions->isRemoveOldValueOnNull()) {
+            $this->removeOldValue($oldValue);
         }
 
         return null;
@@ -83,5 +99,37 @@ class ResourceValidator extends EntityValidator
     public function getType(): string
     {
         return FieldType::RESOURCE;
+    }
+
+    /**
+     * @throws MissingResourceTransformerException
+     */
+    protected function getResourceTransformer(
+        string $resourceClass,
+        string $fieldName,
+        FieldOptions $fieldOptions,
+    ): ApiResourceTransformer {
+        try {
+            return $this->apiResourceTransformerRegistry->get($resourceClass);
+        } catch (\InvalidArgumentException) {
+            throw new MissingResourceTransformerException($fieldName, sprintf('No resource transformer has been registered for the resource %s.', $resourceClass));
+        }
+    }
+
+    protected function removeOldValue(object $oldValue): void
+    {
+        $this->em->remove($oldValue);
+    }
+
+    /**
+     * @throws RequiredFieldMissingException
+     */
+    public function fillEntity(
+        ApiResourceTransformer $resourceTransformer,
+        array $value,
+        object $entity,
+        FieldOptions $fieldOptions,
+    ): object {
+        return $resourceTransformer->fromArray($value, $entity);
     }
 }
