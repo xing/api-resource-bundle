@@ -45,7 +45,7 @@ class ResourceValidator extends ApiValidator
             ));
         }
 
-        $resourceTransformer = $this->getResourceTransformer($fieldOptions->getResourceClass(), $fieldName);
+        $resourceTransformer = $this->getResourceTransformer($fieldOptions->getResourceClass(), $fieldName, $fieldOptions);
 
         $this->repository = $this->em->getRepository($resourceTransformer->getEntityClass());
 
@@ -77,7 +77,7 @@ class ResourceValidator extends ApiValidator
             }
 
             if (null !== $entity) {
-                $resourceTransformer->fromArray($value, $entity);
+                $this->fillEntity($resourceTransformer, $value, $entity);
 
                 if (true === $fieldOptions->isPersist()) {
                     $this->em->persist($entity);
@@ -104,8 +104,11 @@ class ResourceValidator extends ApiValidator
     /**
      * @throws MissingResourceTransformerException
      */
-    protected function getResourceTransformer(string $resourceClass, string $fieldName): ApiResourceTransformer
-    {
+    protected function getResourceTransformer(
+        string $resourceClass,
+        string $fieldName,
+        FieldOptions $fieldOptions,
+    ): ApiResourceTransformer {
         try {
             return $this->apiResourceTransformerRegistry->get($resourceClass);
         } catch (\InvalidArgumentException) {
@@ -116,5 +119,17 @@ class ResourceValidator extends ApiValidator
     protected function removeOldValue(object $oldValue): void
     {
         $this->em->remove($oldValue);
+    }
+
+    /**
+     * @throws RequiredFieldMissingException
+     */
+    public function fillEntity(
+        ApiResourceTransformer $resourceTransformer,
+        array $value,
+        object $entity,
+        FieldOptions $fieldOptions,
+    ): object {
+        return $resourceTransformer->fromArray($value, $entity);
     }
 }
