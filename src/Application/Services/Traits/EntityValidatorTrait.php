@@ -23,7 +23,7 @@ trait EntityValidatorTrait
         string $idFieldName = 'id',
         bool $allowNull = false,
     ): ?object {
-        $entity = $this->fetchEntity($idFieldName, $id);
+        $entity = $this->fetchEntity($idFieldName, $id, $fieldOptions);
 
         if (null === $entityClass && method_exists($fieldOptions, 'getEntityClass')) {
             $entityClass = $fieldOptions->getEntityClass();
@@ -36,7 +36,7 @@ trait EntityValidatorTrait
         return $entity;
     }
 
-    protected function fetchEntity(string $idFieldName, int $id): ?object
+    protected function fetchEntity(string $idFieldName, int $id, FieldOptions $fieldOptions): ?object
     {
         return $this->repository->findOneBy([
             $idFieldName => $id
