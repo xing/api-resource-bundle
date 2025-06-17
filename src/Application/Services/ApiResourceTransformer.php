@@ -225,11 +225,11 @@ abstract class ApiResourceTransformer
                     return $entityMethod;
                 }
             }
-
-            throw new \InvalidArgumentException('No matching method found for field name: ' . $fieldName);
+        } else {
+            $entityMethod = $methodPrefix . ucfirst($this->toCamelCase($fieldName));
         }
 
-        return $methodPrefix . ucfirst($this->toCamelCase($fieldName));
+        return $entityMethod;
     }
 
     protected function flattenDataArray(array $data, array $writeableFields): array
