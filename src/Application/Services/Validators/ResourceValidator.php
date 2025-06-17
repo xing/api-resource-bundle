@@ -77,7 +77,7 @@ class ResourceValidator extends ApiValidator
             }
 
             if (null !== $entity) {
-                $this->fillEntity($resourceTransformer, $value, $entity);
+                $this->fillEntity($resourceTransformer, $value, $entity, $fieldOptions);
 
                 if (true === $fieldOptions->isPersist()) {
                     $this->em->persist($entity);
