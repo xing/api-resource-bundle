@@ -9,7 +9,7 @@ use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 
 trait EntityValidatorTrait
 {
-    protected EntityRepository $repository;
+    protected ?EntityRepository $repository;
     protected EntityManagerInterface $em;
 
     /**
