@@ -16,7 +16,7 @@ trait EntityValidatorTrait
      * @throws LinkedObjectNotFoundException
      */
     protected function getEntity(
-        int $id,
+        mixed $id,
         string $fieldName,
         FieldOptions $fieldOptions,
         string $entityClass = null,
@@ -36,7 +36,7 @@ trait EntityValidatorTrait
         return $entity;
     }
 
-    protected function fetchEntity(string $idFieldName, int $id, FieldOptions $fieldOptions): ?object
+    protected function fetchEntity(string $idFieldName, mixed $id, FieldOptions $fieldOptions): ?object
     {
         return $this->repository->findOneBy([
             $idFieldName => $id
@@ -46,7 +46,7 @@ trait EntityValidatorTrait
     /**
      * @throws LinkedObjectNotFoundException
      */
-    protected function checkIfEntityNotNull($entity, string $fieldName, int $id, string $entityClass): void
+    protected function checkIfEntityNotNull($entity, string $fieldName, mixed $id, string $entityClass): void
     {
         if (null === $entity) {
             throw new LinkedObjectNotFoundException($fieldName, sprintf('%s for id %s could not be found.', $entityClass, $id));
