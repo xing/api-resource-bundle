@@ -32,15 +32,6 @@ class IdValidatorTest extends TestCase
         $this->testService->validate('department_id', 1, new IntField());
     }
 
-    public function testItThrowsExceptionIfValueIsNotOfTypeInt(): void
-    {
-        $this->expectException(FieldTypeException::class);
-
-        $this->expectRepositoryToBeFound();
-
-        $this->testService->validate('example_id', 'foo', new IdField(ExampleEntity::class));
-    }
-
     public function testItThrowsExceptionIfEntityCannotBeFound(): void
     {
         $this->expectException(LinkedObjectNotFoundException::class);

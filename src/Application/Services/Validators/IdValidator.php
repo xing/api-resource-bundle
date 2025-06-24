@@ -44,10 +44,6 @@ class IdValidator extends ApiValidator
         parent::validate($fieldName, $value, $fieldOptions, $oldValue);
 
         if (null !== $value) {
-            if (false === is_int($value)) {
-                throw new FieldTypeException($fieldName, 'Value must be of type integer.');
-            }
-
             return $this->getEntity($value, $fieldName, $fieldOptions, null, $fieldOptions->getIdFieldName());
         }
 
