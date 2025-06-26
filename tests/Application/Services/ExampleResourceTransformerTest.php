@@ -3,6 +3,16 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
+use Prescreen\ApiResourceBundle\Application\Services\PermissionValidators\CoolPermissionValidator;
+use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidator;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
@@ -18,7 +28,15 @@ use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ExampleResourceTransformer::class)]
-
+#[UsesClass(BoolField::class)]
+#[UsesClass(ResourceCollectionField::class)]
+#[UsesClass(ResourceField::class)]
+#[UsesClass(StringField::class)]
+#[UsesClass(CoolPermissionValidator::class)]
+#[UsesClass(ExampleEntity::class)]
+#[UsesClass(ExampleTranslationEntity::class)]
+#[UsesClass(ExampleResource::class)]
+#[UsesClass(ApiValidatorException::class)]
 class ExampleResourceTransformerTest extends TestCase
 {
     protected ApiValidatorRegistry $apiValidatorRegistry;
@@ -71,8 +89,11 @@ class ExampleResourceTransformerTest extends TestCase
         $exampleEntity = new ExampleEntity();
         $exampleEntity->setIsCool(true);
 
+        $boolValidator = $this->createValidator(BoolValidator::class, false);
+        $boolValidator->method('validate')->willThrowException($this->createMock(PermissionDeniedException::class));
+
         $this->apiValidatorRegistry->expects($this->once())
-            ->method('get')->willReturn(new BoolValidator());
+            ->method('get')->willReturn($boolValidator);
 
         $this->testService->setUserIsCool(false);
 
@@ -87,14 +108,11 @@ class ExampleResourceTransformerTest extends TestCase
     {
         $exampleEntity = new ExampleEntity();
 
-        $stringValidator = $this->createMock(StringValidator::class);
-        $stringValidator->method('validate')->willReturn('Cool example entity');
-
-        $boolValidator = $this->createMock(BoolValidator::class);
-        $boolValidator->method('validate')->willReturn(false);
-
         $this->apiValidatorRegistry->expects($this->exactly(2))->method('get')
-            ->willReturnOnConsecutiveCalls($stringValidator, $boolValidator);
+            ->willReturnOnConsecutiveCalls(
+                $this->createValidator(StringValidator::class, 'Cool example entity'),
+                $this->createValidator(BoolValidator::class, false),
+            );
 
         $this->testService->fromArray([
             'id' => 1,
@@ -113,18 +131,14 @@ class ExampleResourceTransformerTest extends TestCase
         $oldTranslation = (new ExampleTranslationEntity())->setId(1);
         $exampleEntity->setTranslations(new ArrayCollection([$oldTranslation]));
 
-        $stringValidator = $this->createMock(StringValidator::class);
-        $stringValidator->method('validate')->willReturn('Cool example entity');
-
-        $boolValidator = $this->createMock(BoolValidator::class);
-        $boolValidator->method('validate')->willReturn(false);
-
-        $resourceCollectionValidator = $this->createMock(ResourceCollectionValidator::class);
         $newTranslation = (new ExampleTranslationEntity())->setId(2);
-        $resourceCollectionValidator->method('validate')->willReturn(new ArrayCollection([$newTranslation]));
 
         $this->apiValidatorRegistry->expects($this->exactly(3))->method('get')
-            ->willReturnOnConsecutiveCalls($stringValidator, $boolValidator, $resourceCollectionValidator);
+            ->willReturnOnConsecutiveCalls(
+                $this->createValidator(StringValidator::class, 'Cool example entity'),
+                $this->createValidator(BoolValidator::class, false),
+                $this->createValidator(ResourceCollectionValidator::class, new ArrayCollection([$newTranslation])),
+            );
 
         $this->testService->fromArray([
             'id' => 1,
@@ -146,18 +160,14 @@ class ExampleResourceTransformerTest extends TestCase
     {
         $exampleEntity = new ExampleEntity();
 
-        $stringValidator = $this->createMock(StringValidator::class);
-        $stringValidator->method('validate')->willReturn('Cool example entity');
-
-        $boolValidator = $this->createMock(BoolValidator::class);
-        $boolValidator->method('validate')->willReturn(false);
-
-        $resourceCollectionValidator = $this->createMock(ResourceCollectionValidator::class);
         $newTranslation = (new ExampleTranslationEntity())->setId(1);
-        $resourceCollectionValidator->method('validate')->willReturn(new ArrayCollection([$newTranslation]));
 
         $this->apiValidatorRegistry->expects($this->exactly(3))->method('get')
-            ->willReturnOnConsecutiveCalls($stringValidator, $boolValidator, $resourceCollectionValidator);
+            ->willReturnOnConsecutiveCalls(
+                $this->createValidator(StringValidator::class, 'Cool example entity'),
+                $this->createValidator(BoolValidator::class, false),
+                $this->createValidator(ResourceCollectionValidator::class, new ArrayCollection([$newTranslation])),
+            );
 
         $this->testService->fromArray([
             'id' => 1,
@@ -198,5 +208,14 @@ class ExampleResourceTransformerTest extends TestCase
         $this->assertSame(2, $resources[1]->id);
         $this->assertSame('Not so cool example entity', $resources[1]->name);
         $this->assertFalse($resources[1]->is_cool);
+    }
+
+    private function createValidator(string $validatorClass, mixed $returnValue): ApiValidator&MockObject
+    {
+        /** @var ApiValidator&MockObject $validator */
+        $validator = $this->createMock($validatorClass);
+        $validator->method('validate')->willReturn($returnValue);
+
+        return $validator;
     }
 }

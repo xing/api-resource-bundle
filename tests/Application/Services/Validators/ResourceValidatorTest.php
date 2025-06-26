@@ -5,6 +5,7 @@ namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
@@ -13,6 +14,7 @@ use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
 use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ResourceValidator;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
@@ -20,6 +22,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ResourceValidator::class)]
+#[CoversClass(ResourceField::class)]
+#[UsesClass(ApiValidatorException::class)]
+#[UsesClass(ExampleEntity::class)]
 class ResourceValidatorTest extends TestCase
 {
     protected ApiResourceTransformerRegistry $apiResourceTransformerRegistry;
@@ -37,7 +42,7 @@ class ResourceValidatorTest extends TestCase
     {
         $this->expectException(FieldTypeException::class);
 
-        $this->testService->validate('resource_field', null, new IdField(ExampleEntity::class));
+        $this->testService->validate('resource_field', null, $this->createMock(IdField::class));
     }
 
     public function testItThrowsExceptionIfResourceTransformerForResourceHasNotBeenRegistered(): void

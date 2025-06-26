@@ -3,13 +3,18 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\BoolValidator;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(BoolValidator::class)]
+#[CoversClass(BoolField::class)]
+#[UsesClass(ApiValidatorException::class)]
 class BoolValidatorTest extends TestCase
 {
     private BoolValidator $testService;

@@ -3,13 +3,17 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\JsonValidator;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 
 #[CoversClass(JsonValidator::class)]
+#[CoversClass(JsonField::class)]
+#[UsesClass(ApiValidatorException::class)]
 class JsonValidatorTest extends TestCase
 {
     private JsonValidator $testService;

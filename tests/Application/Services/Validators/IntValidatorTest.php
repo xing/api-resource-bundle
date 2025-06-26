@@ -3,14 +3,18 @@
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\IntValidator;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Exception\FieldOutOfRangeException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(IntValidator::class)]
+#[CoversClass(IntField::class)]
+#[UsesClass(ApiValidatorException::class)]
 class IntValidatorTest extends TestCase
 {
     private IntValidator $testService;
