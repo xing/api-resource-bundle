@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Exception;
+namespace Xing\ApiResourceBundle\Exception;
 
-use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
+use Xing\ApiResourceBundle\Exception\ApiValidatorException;
 
 class PermissionDeniedException extends ApiValidatorException
 {

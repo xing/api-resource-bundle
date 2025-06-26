@@ -1,17 +1,17 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
-use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Entity\ExampleEntity;
+use Xing\ApiResourceBundle\Repository\ExampleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdCollectionField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\IdCollectionValidator;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\IdCollectionField;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
+use Xing\ApiResourceBundle\Application\Services\Validators\IdCollectionValidator;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

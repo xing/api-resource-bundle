@@ -1,15 +1,15 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services;
+namespace Xing\ApiResourceBundle\Application\Services;
 
 use Doctrine\Common\Collections\Collection;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
-use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
-use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
-use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Xing\ApiResourceBundle\Application\Interfaces\ApiResource;
+use Xing\ApiResourceBundle\Application\Services\Traits\CaseConverter;
+use Xing\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
+use Xing\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Xing\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 
 abstract class ApiResourceTransformer
 {

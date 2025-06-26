@@ -1,9 +1,9 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Traits;
+namespace Xing\ApiResourceBundle\Application\Services\Traits;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Exception\FieldOutOfRangeException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Xing\ApiResourceBundle\Exception\FieldOutOfRangeException;
 
 trait RangeValidatorTrait
 {

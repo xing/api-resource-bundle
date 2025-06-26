@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
+namespace Xing\ApiResourceBundle\Application\Configuration\FieldOptions;
 
-use Prescreen\ApiResourceBundle\Application\Interfaces\PermissionValidator;
+use Xing\ApiResourceBundle\Application\Interfaces\PermissionValidator;
 
 abstract class FieldOptions
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services;
+namespace Xing\ApiResourceBundle\Tests\Application\Services;
 
-use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
+use Xing\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 use Doctrine\Common\Collections\ArrayCollection;
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
-use Prescreen\ApiResourceBundle\Application\Services\ExampleResourceTransformer;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\BoolValidator;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ResourceCollectionValidator;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\StringValidator;
-use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
-use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
-use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
-use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Xing\ApiResourceBundle\Application\ApiResources\ExampleResource;
+use Xing\ApiResourceBundle\Application\Services\ExampleResourceTransformer;
+use Xing\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
+use Xing\ApiResourceBundle\Application\Services\Validators\BoolValidator;
+use Xing\ApiResourceBundle\Application\Services\Validators\ResourceCollectionValidator;
+use Xing\ApiResourceBundle\Application\Services\Validators\StringValidator;
+use Xing\ApiResourceBundle\Entity\ExampleEntity;
+use Xing\ApiResourceBundle\Entity\ExampleTranslationEntity;
+use Xing\ApiResourceBundle\Exception\PermissionDeniedException;
+use Xing\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use PHPUnit\Framework\TestCase;
 
 class ExampleResourceTransformerTest extends TestCase

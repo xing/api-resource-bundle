@@ -1,20 +1,20 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
-use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ResourceValidator;
-use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
-use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Xing\ApiResourceBundle\Application\ApiResources\ExampleResource;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\ApiResourceTransformer;
+use Xing\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
+use Xing\ApiResourceBundle\Application\Services\Validators\ResourceValidator;
+use Xing\ApiResourceBundle\Entity\ExampleEntity;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Exception\MissingResourceTransformerException;
+use Xing\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use PHPUnit\Framework\TestCase;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\HtmlField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\HtmlPurifier;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\HtmlValidator;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\HtmlField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\HtmlPurifier;
+use Xing\ApiResourceBundle\Application\Services\Validators\HtmlValidator;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
 
 class HtmlValidatorTest extends TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use PHPUnit\Framework\TestCase;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\JsonValidator;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\JsonField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\Validators\JsonValidator;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
 
 class JsonValidatorTest extends TestCase
 {

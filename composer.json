@@ -14,12 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Prescreen\\ApiResourceBundle\\": "src"
+            "Xing\\ApiResourceBundle\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Prescreen\\ApiResourceBundle\\Tests\\": "tests/"
+            "Xing\\ApiResourceBundle\\Tests\\": "tests/"
         }
     },
     "require": {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Command;
+namespace Xing\ApiResourceBundle\Command;
 
-use Prescreen\ApiResourceBundle\Application\Services\Traits\CaseConverter;
-use Prescreen\ApiResourceBundle\Infrastructure\Services\CreateApiResourceService;
+use Xing\ApiResourceBundle\Application\Services\Traits\CaseConverter;
+use Xing\ApiResourceBundle\Infrastructure\Services\CreateApiResourceService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

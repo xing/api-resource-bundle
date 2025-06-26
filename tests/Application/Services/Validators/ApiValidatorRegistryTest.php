@@ -1,10 +1,10 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorInterface;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\Validators\ApiValidatorInterface;
+use Xing\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
 use PHPUnit\Framework\TestCase;
 
 class ApiValidatorRegistryTest extends TestCase
