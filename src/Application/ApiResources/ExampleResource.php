@@ -23,7 +23,8 @@ class ExampleResource implements ApiResource
         $resource->name = $entity->getName();
         $resource->is_cool = $entity->isCool();
         $resource->translations = $entity->getTranslations()
-            ->map(static fn (ExampleTranslationEntity $exampleTranslationEntity) =>
+            ->map(
+                static fn (ExampleTranslationEntity $exampleTranslationEntity) =>
                 ExampleTranslationResource::fromEntity($exampleTranslationEntity)
             );
 
