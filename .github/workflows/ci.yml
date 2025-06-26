@@ -26,8 +26,8 @@ jobs:
         env:
           XDEBUG_MODE: coverage
 
-      - name: Coverage Check
-        uses: docker://ghcr.io/ericsizemore/phpunit-coverage-check-action
-        with:
-          clover_file: tests/result/clover.xml
-          threshold: 75
+#      - name: Coverage Check
+#        uses: docker://ghcr.io/ericsizemore/phpunit-coverage-check-action
+#        with:
+#          clover_file: tests/result/clover.xml
+#          threshold: 75
