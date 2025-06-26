@@ -1,5 +1,5 @@
 {
-    "name": "xing/api-resource-bundle",
+    "name": "xing-com/api-resource-bundle",
     "type": "symfony-bundle",
     "description": "This bundle provides easy to use API resources for serialization and deserialization.",
     "homepage": "https://xing.com",
