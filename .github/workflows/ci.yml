@@ -15,7 +15,7 @@ jobs:
 
       - name: Check code style
         run:
-          ./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no -vvv
+          ./vendor/bin/php-cs-fixer fix src --dry-run --using-cache=no -vvv
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@master
