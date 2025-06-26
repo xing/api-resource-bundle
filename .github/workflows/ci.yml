@@ -22,5 +22,12 @@ jobs:
           php_version: 8.3
           php_extensions: "xdebug"
           args: --coverage-text
+          coverage_clover: tests/result/clover.xml
         env:
           XDEBUG_MODE: coverage
+
+      - name: Coverage Check
+        uses: docker://ghcr.io/ericsizemore/phpunit-coverage-check-action
+        with:
+          clover_file: tests/result/clover.xml'
+          threshold: 75
