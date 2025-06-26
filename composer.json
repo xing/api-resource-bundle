@@ -23,7 +23,7 @@
         }
     },
     "require": {
-        "php": "^8.3",
+        "php": "8.3.*",
         "symfony/config": "^4.4|^5.0|^6.4",
         "symfony/http-kernel": "^4.4|^5.0|^6.4",
         "doctrine/orm": "^2.7",
