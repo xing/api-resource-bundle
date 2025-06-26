@@ -16,7 +16,7 @@ jobs:
       - name: PHPUnit Tests
         uses: php-actions/phpunit@master
         with:
-          version: 9.5
+          version: 12.2
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           php_version: 8.3
