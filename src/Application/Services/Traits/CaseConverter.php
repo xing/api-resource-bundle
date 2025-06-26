@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Traits;
+namespace Xing\ApiResourceBundle\Application\Services\Traits;
 
 trait CaseConverter
 {

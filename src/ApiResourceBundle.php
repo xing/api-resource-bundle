@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle;
+namespace Xing\ApiResourceBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;

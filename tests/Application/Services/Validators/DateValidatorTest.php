@@ -1,11 +1,11 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\DateField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\DateValidator;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\DateField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\Validators\DateValidator;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
 
 class DateValidatorTest extends TestCase

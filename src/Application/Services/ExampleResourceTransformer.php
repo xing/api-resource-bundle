@@ -1,15 +1,15 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services;
+namespace Xing\ApiResourceBundle\Application\Services;
 
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleTranslationResource;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
-use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
-use Prescreen\ApiResourceBundle\Application\Services\PermissionValidators\CoolPermissionValidator;
-use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
+use Xing\ApiResourceBundle\Application\ApiResources\ExampleResource;
+use Xing\ApiResourceBundle\Application\ApiResources\ExampleTranslationResource;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
+use Xing\ApiResourceBundle\Application\Interfaces\ApiResource;
+use Xing\ApiResourceBundle\Application\Services\PermissionValidators\CoolPermissionValidator;
+use Xing\ApiResourceBundle\Entity\ExampleEntity;
 
 class ExampleResourceTransformer extends ApiResourceTransformer
 {

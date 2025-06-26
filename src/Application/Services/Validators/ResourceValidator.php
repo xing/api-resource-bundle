@@ -1,20 +1,20 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Application\Services\Validators;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
-use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
-use Prescreen\ApiResourceBundle\Application\Services\Traits\EntityValidatorTrait;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
-use Prescreen\ApiResourceBundle\Exception\MissingResourceTransformerException;
-use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
-use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\ApiResourceTransformer;
+use Xing\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
+use Xing\ApiResourceBundle\Application\Services\Traits\EntityValidatorTrait;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
+use Xing\ApiResourceBundle\Exception\MissingResourceTransformerException;
+use Xing\ApiResourceBundle\Exception\PermissionDeniedException;
+use Xing\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Xing\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class ResourceValidator extends ApiValidator
 {

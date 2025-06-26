@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions;
+namespace Xing\ApiResourceBundle\Application\Configuration\FieldOptions;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
 
 class FloatField extends IntField
 {

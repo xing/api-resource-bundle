@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Repository;
+namespace Xing\ApiResourceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

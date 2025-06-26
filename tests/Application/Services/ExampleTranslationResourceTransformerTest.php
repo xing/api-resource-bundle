@@ -1,11 +1,11 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services;
+namespace Xing\ApiResourceBundle\Tests\Application\Services;
 
-use Prescreen\ApiResourceBundle\Application\Services\ExampleTranslationResourceTransformer;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\StringValidator;
-use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
+use Xing\ApiResourceBundle\Application\Services\ExampleTranslationResourceTransformer;
+use Xing\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
+use Xing\ApiResourceBundle\Application\Services\Validators\StringValidator;
+use Xing\ApiResourceBundle\Entity\ExampleTranslationEntity;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTranslationResourceTransformerTest extends TestCase

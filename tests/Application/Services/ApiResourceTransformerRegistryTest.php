@@ -1,12 +1,12 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services;
+namespace Xing\ApiResourceBundle\Tests\Application\Services;
 
 use PHPUnit\Framework\MockObject\MockObject;
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
-use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformer;
-use Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
+use Xing\ApiResourceBundle\Application\ApiResources\ExampleResource;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\BoolField;
+use Xing\ApiResourceBundle\Application\Services\ApiResourceTransformer;
+use Xing\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry;
 use PHPUnit\Framework\TestCase;
 
 class ApiResourceTransformerRegistryTest extends TestCase

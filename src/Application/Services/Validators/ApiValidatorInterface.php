@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
 
 interface ApiValidatorInterface
 {

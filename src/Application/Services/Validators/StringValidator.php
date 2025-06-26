@@ -1,14 +1,14 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
-use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
-use Prescreen\ApiResourceBundle\Exception\ValueNotAllowedException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Exception\PermissionDeniedException;
+use Xing\ApiResourceBundle\Exception\RequiredFieldMissingException;
+use Xing\ApiResourceBundle\Exception\ValueNotAllowedException;
 
 class StringValidator extends ApiValidator
 {

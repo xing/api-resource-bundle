@@ -1,11 +1,11 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Traits;
+namespace Xing\ApiResourceBundle\Application\Services\Traits;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
-use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\FieldOptions;
+use Xing\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 
 trait EntityValidatorTrait
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\IntValidator;
-use Prescreen\ApiResourceBundle\Exception\FieldOutOfRangeException;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Services\Validators\IntValidator;
+use Xing\ApiResourceBundle\Exception\FieldOutOfRangeException;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
 
 class IntValidatorTest extends TestCase

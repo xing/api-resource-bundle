@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Enum;
+namespace Xing\ApiResourceBundle\Application\Enum;
 
 class FieldType
 {

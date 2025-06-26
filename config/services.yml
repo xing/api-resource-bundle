@@ -4,23 +4,23 @@ services:
         autoconfigure: true
         public: true
 
-    Prescreen\ApiResourceBundle\Command\:
+    Xing\ApiResourceBundle\Command\:
         resource: '../src/Command/*'
 
-    Prescreen\ApiResourceBundle\Infrastructure\Services\:
+    Xing\ApiResourceBundle\Infrastructure\Services\:
         resource: '../src/Infrastructure/Services/*'
 
     # Validators
-    Prescreen\ApiResourceBundle\Application\Services\Validators\:
+    Xing\ApiResourceBundle\Application\Services\Validators\:
         resource: '../src/Application/Services/Validators/*'
         tags:
             - { name: api_resource.validator }
 
-    Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
+    Xing\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry:
         arguments:
             - !tagged_iterator api_resource.validator
 
     # Transformers
-    Prescreen\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry:
+    Xing\ApiResourceBundle\Application\Services\ApiResourceTransformerRegistry:
         arguments:
             - !tagged_iterator api_resource.transformer

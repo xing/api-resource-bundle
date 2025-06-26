@@ -1,11 +1,11 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services;
+namespace Xing\ApiResourceBundle\Application\Services;
 
-use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleTranslationResource;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
-use Prescreen\ApiResourceBundle\Application\Interfaces\ApiResource;
-use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
+use Xing\ApiResourceBundle\Application\ApiResources\ExampleTranslationResource;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\StringField;
+use Xing\ApiResourceBundle\Application\Interfaces\ApiResource;
+use Xing\ApiResourceBundle\Entity\ExampleTranslationEntity;
 
 class ExampleTranslationResourceTransformer extends ApiResourceTransformer
 {

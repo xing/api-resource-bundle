@@ -1,16 +1,16 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Tests\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
-use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
-use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Entity\ExampleEntity;
+use Xing\ApiResourceBundle\Repository\ExampleRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
-use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
-use Prescreen\ApiResourceBundle\Application\Services\Validators\IdValidator;
-use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
-use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
+use Xing\ApiResourceBundle\Application\Configuration\FieldOptions\IntField;
+use Xing\ApiResourceBundle\Application\Services\Validators\IdValidator;
+use Xing\ApiResourceBundle\Exception\FieldTypeException;
+use Xing\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

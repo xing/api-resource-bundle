@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services;
+namespace Xing\ApiResourceBundle\Application\Services;
 
 class ApiResourceTransformerRegistry
 {

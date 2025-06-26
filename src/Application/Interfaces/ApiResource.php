@@ -1,6 +1,6 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Interfaces;
+namespace Xing\ApiResourceBundle\Application\Interfaces;
 
 interface ApiResource
 {

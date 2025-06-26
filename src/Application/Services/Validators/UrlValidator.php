@@ -1,8 +1,8 @@
 <?php
 
-namespace Prescreen\ApiResourceBundle\Application\Services\Validators;
+namespace Xing\ApiResourceBundle\Application\Services\Validators;
 
-use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
+use Xing\ApiResourceBundle\Application\Enum\FieldType;
 
 class UrlValidator extends StringValidator
 {
