@@ -22,4 +22,4 @@ jobs:
           php_version: 8.3
           php_extensions: "xdebug"
           coverage_clover: "coverage/clover.xml"
-          args: --coverage-text
+          args: XDEBUG_MODE=coverage --coverage-text
