@@ -2,8 +2,11 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
@@ -14,6 +17,9 @@ use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(IdValidator::class)]
+#[CoversClass(IdField::class)]
+#[UsesClass(ApiValidatorException::class)]
 class IdValidatorTest extends TestCase
 {
     protected EntityManagerInterface $em;
@@ -29,7 +35,7 @@ class IdValidatorTest extends TestCase
     {
         $this->expectException(FieldTypeException::class);
 
-        $this->testService->validate('department_id', 1, new IntField());
+        $this->testService->validate('department_id', 1, $this->createMock(IntField::class));
     }
 
     public function testItThrowsExceptionIfEntityCannotBeFound(): void

@@ -6,7 +6,7 @@ use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 
 class UrlField extends FieldOptions
 {
-    const string REGEX = '#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#';
+    public const string REGEX = '#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#';
 
     public function __construct(
         bool $required = false,

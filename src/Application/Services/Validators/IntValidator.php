@@ -32,10 +32,6 @@ class IntValidator extends ApiValidator
 
         $this->validateRange($value, $fieldOptions, $fieldName);
 
-        if ($value === '') {
-            $value = null;
-        }
-
         return $value;
     }
 

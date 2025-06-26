@@ -2,12 +2,18 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\DateField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\DateValidator;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(DateValidator::class)]
+#[CoversClass(DateField::class)]
+#[UsesClass(ApiValidatorException::class)]
 class DateValidatorTest extends TestCase
 {
     private DateValidator $testService;

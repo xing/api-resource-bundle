@@ -2,8 +2,12 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
+use Prescreen\ApiResourceBundle\Exception\ApiValidatorException;
 use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +20,9 @@ use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(IdCollectionValidator::class)]
+#[CoversClass(IdCollectionField::class)]
+#[UsesClass(ApiValidatorException::class)]
 class IdCollectionValidatorTest extends TestCase
 {
     protected EntityManagerInterface $em;
@@ -32,7 +39,7 @@ class IdCollectionValidatorTest extends TestCase
     {
         $this->expectException(FieldTypeException::class);
 
-        $this->testService->validate('example_ids', [1], new IntField());
+        $this->testService->validate('example_ids', [1], $this->createMock(IntField::class));
     }
 
     public function testItThrowsExceptionIfValueIsNotOfTypeArray(): void

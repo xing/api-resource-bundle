@@ -73,7 +73,7 @@ class ResourceValidator extends ApiValidator
                     $entity = new $entityClass();
                 }
             } elseif (true === $fieldOptions->isCreateIfNotExists()) {
-                $entity = new $entityClass;
+                $entity = new $entityClass();
             }
 
             if (null !== $entity) {
