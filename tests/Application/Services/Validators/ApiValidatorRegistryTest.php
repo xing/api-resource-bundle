@@ -2,11 +2,13 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorInterface;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ApiValidatorRegistry::class)]
 class ApiValidatorRegistryTest extends TestCase
 {
     private iterable $validators;

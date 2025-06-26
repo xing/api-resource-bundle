@@ -4,6 +4,7 @@ namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\IdField;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceField;
@@ -18,6 +19,7 @@ use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ResourceValidator::class)]
 class ResourceValidatorTest extends TestCase
 {
     protected ApiResourceTransformerRegistry $apiResourceTransformerRegistry;

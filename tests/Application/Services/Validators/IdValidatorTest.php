@@ -2,6 +2,7 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
 use Prescreen\ApiResourceBundle\Entity\ExampleEntity;
 use Prescreen\ApiResourceBundle\Repository\ExampleRepository;
@@ -14,6 +15,7 @@ use Prescreen\ApiResourceBundle\Exception\LinkedObjectNotFoundException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(IdValidator::class)]
 class IdValidatorTest extends TestCase
 {
     protected EntityManagerInterface $em;

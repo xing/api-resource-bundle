@@ -2,6 +2,7 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Prescreen\ApiResourceBundle\Exception\WrongObjectTypeGivenException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
@@ -15,6 +16,8 @@ use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
 use Prescreen\ApiResourceBundle\Exception\PermissionDeniedException;
 use Prescreen\ApiResourceBundle\Exception\RequiredFieldMissingException;
 use PHPUnit\Framework\TestCase;
+
+#[CoversClass(ExampleResourceTransformer::class)]
 
 class ExampleResourceTransformerTest extends TestCase
 {

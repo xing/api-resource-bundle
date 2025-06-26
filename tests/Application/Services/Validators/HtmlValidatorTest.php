@@ -2,6 +2,7 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\HtmlField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
@@ -9,6 +10,7 @@ use Prescreen\ApiResourceBundle\Application\Services\HtmlPurifier;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\HtmlValidator;
 use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 
+#[CoversClass(HtmlValidator::class)]
 class HtmlValidatorTest extends TestCase
 {
     private HtmlPurifier $htmlPurifier;

@@ -2,12 +2,14 @@
 
 namespace Prescreen\ApiResourceBundle\Tests\Application\Services;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Prescreen\ApiResourceBundle\Application\Services\ExampleTranslationResourceTransformer;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\ApiValidatorRegistry;
 use Prescreen\ApiResourceBundle\Application\Services\Validators\StringValidator;
 use Prescreen\ApiResourceBundle\Entity\ExampleTranslationEntity;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ExampleTranslationResourceTransformer::class)]
 class ExampleTranslationResourceTransformerTest extends TestCase
 {
     protected ApiValidatorRegistry $apiValidatorRegistry;

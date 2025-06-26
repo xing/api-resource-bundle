@@ -5,6 +5,7 @@ namespace Prescreen\ApiResourceBundle\Tests\Application\Services\Validators;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Prescreen\ApiResourceBundle\Application\ApiResources\ExampleResource;
 use Prescreen\ApiResourceBundle\Application\Configuration\FieldOptions\ResourceCollectionField;
 use Prescreen\ApiResourceBundle\Application\Enum\FieldType;
@@ -15,6 +16,7 @@ use Prescreen\ApiResourceBundle\Exception\FieldTypeException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ResourceCollectionValidator::class)]
 class ResourceCollectionValidatorTest extends TestCase
 {
     protected ApiResourceTransformerRegistry $apiResourceTransformerRegistry;
