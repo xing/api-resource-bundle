@@ -10,6 +10,9 @@ services:
     Xing\ApiResourceBundle\Infrastructure\Services\:
         resource: '../src/Infrastructure/Services/*'
 
+    Xing\ApiResourceBundle\Application\Services\:
+        resource: '../src/Application/Services/*'
+
     # Validators
     Xing\ApiResourceBundle\Application\Services\Validators\:
         resource: '../src/Application/Services/Validators/*'
