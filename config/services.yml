@@ -11,7 +11,7 @@ services:
         resource: '../src/Infrastructure/Services/*'
 
     Xing\ApiResourceBundle\Application\Services\HtmlPurifier:
-        alias: '../src/Infrastructure/Services/EzyangHtmlPurifier'
+        alias: 'Xing\ApiResourceBundle\Infrastructure\Services\EzyangHtmlPurifier'
 
     # Validators
     Xing\ApiResourceBundle\Application\Services\Validators\:
